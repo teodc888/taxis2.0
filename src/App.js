@@ -36,6 +36,7 @@ import CrearChofer from "./components/chofer/crearChofer/crearChofer";
 import MostrarChofer from "./components/chofer/mostrarChofer/mostrarChofer";
 import CrearRecaudacion from "./components/recaudacion/crearRecaudacion/crearRecaudacion";
 import MostrarRecaudacion from "./components/recaudacion/mostrarRecaudacion/mostrarRecaudacion";
+import Perfil from "./components/perfil/perfil";
 
 function App() {
   const dispatch = useDispatch();
@@ -101,6 +102,7 @@ function App() {
                 path="/mostrarRecaudacion"
                 element={<MostrarRecaudacion />}
               />
+              <Route path="/perfil" element={<Perfil />} />
             </>
           )}
         </Routes>

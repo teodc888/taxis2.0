@@ -196,6 +196,10 @@ export default function Navbar({ setMode }) {
     }, 300);
   };
 
+  const handlePerfil = () => {
+    navigate("/perfil");
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ bgcolor: "#311b92" }}>
@@ -231,7 +235,11 @@ export default function Navbar({ setMode }) {
           />
           {autenticacion && (
             <>
-              <IconButton color="inherit" aria-label="login">
+              <IconButton
+                color="inherit"
+                aria-label="login"
+                onClick={handlePerfil}
+              >
                 <AccountCircleIcon />
               </IconButton>
               <Button
