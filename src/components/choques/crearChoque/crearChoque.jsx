@@ -13,13 +13,18 @@ import { useSelector } from "react-redux";
 //Swal
 import Swal from "sweetalert2";
 
-export default function CrearRecaudacion() {
+export default function CrearChoque() {
   const [input, setInput] = useState({
     dia: "",
-    total: "",
-    gnc: "",
-    kilometros: "",
-    gastoExtra: "",
+    fotos: "",
+    seguro: "",
+    poliza: "",
+    nombre: "",
+    apellido: "",
+    dni: "",
+    telefono: "",
+    placa: "",
+    marca: "",
   });
 
   const handleChange = (e) => {
@@ -35,7 +40,7 @@ export default function CrearRecaudacion() {
     e.preventDefault();
     try {
       const docRef = await addDoc(
-        collection(db, `${usuario.email} recaudacion`),
+        collection(db, `${usuario.email} choque`),
         input
       );
       Swal.fire({
@@ -48,10 +53,15 @@ export default function CrearRecaudacion() {
       console.log(docRef);
       setInput({
         dia: "",
-        total: "",
-        gnc: "",
-        kilometros: "",
-        gastoExtra: "",
+        fotos: "",
+        seguro: "",
+        poliza: "",
+        nombre: "",
+        apellido: "",
+        dni: "",
+        telefono: "",
+        placa: "",
+        marca: "",
       });
     } catch (error) {
       console.log(error);
@@ -75,7 +85,7 @@ export default function CrearRecaudacion() {
           spacing={2}
           sx={{ mt: "1%" }}
         >
-          <Typography variant="h4">CREAR RECAUDACION</Typography>
+          <Typography variant="h4">CREAR CHOQUE</Typography>
           <Box sx={{ width: { xs: "90%", sm: "70%", md: "50%", lg: "50%" } }}>
             <Grid
               container
@@ -96,49 +106,100 @@ export default function CrearRecaudacion() {
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"
-                  label="Total"
-                  name="total"
+                  label="Fotos"
+                  name="fotos"
                   onChange={handleChange}
                   fullWidth
                   required
-                  value={input.total}
-                  type="number"
+                  value={input.fotos}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"
-                  label="Gnc"
-                  name="gnc"
+                  label="Seguro"
+                  name="seguro"
                   onChange={handleChange}
                   fullWidth
                   required
-                  value={input.gnc}
-                  type="number"
+                  value={input.seguro}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"
-                  label="Kilometros"
-                  name="kilometros"
+                  label="Poliza"
+                  name="poliza"
                   onChange={handleChange}
                   fullWidth
                   required
-                  value={input.kilometros}
-                  type="number"
+                  value={input.poliza}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"
-                  label="Gastos Extras"
-                  name="gastoExtra"
+                  label="Nombre"
+                  name="nombre"
                   onChange={handleChange}
                   fullWidth
                   required
-                  value={input.gastoExtra}
-                  type="number"
+                  value={input.nombre}
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="Apellido"
+                  name="apellido"
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  value={input.apellido}
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="DNI"
+                  name="dni"
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  value={input.dni}
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="Telefono"
+                  name="telefono"
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  value={input.telefono}
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="Placa"
+                  name="placa"
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  value={input.placa}
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="Marca"
+                  name="marca"
+                  onChange={handleChange}
+                  fullWidth
+                  required
+                  value={input.marca}
                 />
               </Grid>
             </Grid>

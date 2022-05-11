@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import Store from "./redux/store/index";
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter } from "react-router-dom";
+import { Container } from "@mui/material";
 
 const { persistor, store } = Store;
 
@@ -16,7 +17,9 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
-          <App />
+          <Container maxWidth="L">
+            <App />
+          </Container>
         </BrowserRouter>
       </PersistGate>
     </Provider>

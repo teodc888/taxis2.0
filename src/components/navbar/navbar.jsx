@@ -41,6 +41,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CarCrashIcon from '@mui/icons-material/CarCrash';
 
 //Slider
 import { makeStyles } from "@material-ui/core/styles";
@@ -76,12 +77,12 @@ const menuItems = [
   },
   {
     listIcon: <LocalTaxiIcon />,
-    listText: "Mostrar Chofer",
+    listText: "Mostrar Choferes",
     listPath: "/mostrarChofer",
   },
   {
     listIcon: <AttachMoneyIcon />,
-    listText: "Agregar Recaudacion",
+    listText: "Agregar Recaudaciones",
     listPath: "/crearRecaudacion",
   },
   {
@@ -89,6 +90,17 @@ const menuItems = [
     listText: "Mostrar Recaudacion",
     listPath: "/mostrarRecaudacion",
   },
+  {
+    listIcon: <CarCrashIcon />,
+    listText: "Agregar Choque",
+    listPath: "/crearChoque",
+  },
+  {
+    listIcon: <CarCrashIcon />,
+    listText: "Mostrar Choques",
+    listPath: "/mostrarChoque",
+  },
+
 ];
 
 export default function Navbar({ setMode }) {
@@ -202,7 +214,7 @@ export default function Navbar({ setMode }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "#311b92" }}>
+      <AppBar position="static" sx={{ bgcolor: "#ffc400", color:"black" }}>
         <Toolbar>
           {autenticacion ? (
             <>
@@ -228,10 +240,10 @@ export default function Navbar({ setMode }) {
             </>
           )}
           <Checkbox
-            icon={<Brightness4Icon sx={{ color: "white" }} />}
-            checkedIcon={<Brightness4OutlinedIcon sx={{ color: "white" }} />}
+            icon={<Brightness4Icon sx={{ color: "black" }} />}
+            checkedIcon={<Brightness4OutlinedIcon sx={{ color: "black" }} />}
             onClick={colorMode.toggleColorMode}
-            sx={{ mr: 1 }}
+            sx={{ mr: "1%" }}
           />
           {autenticacion && (
             <>
@@ -245,7 +257,7 @@ export default function Navbar({ setMode }) {
               <Button
                 variant="contained"
                 color="error"
-                sx={{ ml: "1%" }}
+                sx={{ ml: "1%", border: "1px solid black", borderRadius: "10px", fontSize: {xs:"0.5rem", sm:"0.7rem" , md:"0.9rem", lg:"0.9rem"} }}
                 onClick={handleLogout}
               >
                 Cerrar Sesión

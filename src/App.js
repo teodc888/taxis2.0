@@ -37,6 +37,8 @@ import MostrarChofer from "./components/chofer/mostrarChofer/mostrarChofer";
 import CrearRecaudacion from "./components/recaudacion/crearRecaudacion/crearRecaudacion";
 import MostrarRecaudacion from "./components/recaudacion/mostrarRecaudacion/mostrarRecaudacion";
 import Perfil from "./components/perfil/perfil";
+import CrearChoque from "./components/choques/crearChoque/crearChoque";
+import MostrarChoque from "./components/choques/mostrarChoque/mostrarChoque";
 
 function App() {
   const dispatch = useDispatch();
@@ -103,6 +105,8 @@ function App() {
                 element={<MostrarRecaudacion />}
               />
               <Route path="/perfil" element={<Perfil />} />
+              <Route path="/crearChoque" element={<CrearChoque />} />
+              <Route path="/mostrarChoque" element={<MostrarChoque />} />
             </>
           )}
         </Routes>
