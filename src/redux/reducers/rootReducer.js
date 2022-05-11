@@ -4,6 +4,7 @@ import {
   GET_USUARIO,
   GET_CHOFERES,
   GET_RECAUDACIONES,
+  GET_CHOQUES,
 } from "../actions/actionsType";
 
 const inicialState = {
@@ -12,6 +13,7 @@ const inicialState = {
   usuario: {},
   choferes: [],
   recaudaciones: [],
+  choques: [],
 };
 
 export default function rootReducer(state = inicialState, action) {
@@ -40,6 +42,11 @@ export default function rootReducer(state = inicialState, action) {
       return {
         ...state,
         recaudaciones: action.payload,
+      };
+    case GET_CHOQUES:
+      return {
+        ...state,
+        choques: action.payload,
       };
 
     default:

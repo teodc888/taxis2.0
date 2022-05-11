@@ -4,6 +4,7 @@ import {
   GET_USUARIO,
   GET_CHOFERES,
   GET_RECAUDACIONES,
+  GET_CHOQUES,
 } from "./actionsType";
 
 import { collection, getDocs } from "firebase/firestore";
@@ -33,6 +34,23 @@ export function getRecaudacionesFirebase(nombre) {
 
       return dispatch({
         type: GET_RECAUDACIONES,
+        payload: res.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getChoquesFirebase(nombre) {
+  return async function (dispatch) {
+    try {
+      const res = await getDocs(collection(db, `${nombre} choque`));
+
+      return dispatch({
+        type: GET_CHOQUES,
         payload: res.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
         }),

@@ -6,7 +6,14 @@ const persistConfig = {
   key: "root",
   debug: true,
   storage,
-  whitelist: ["darkMode", "autenticacion", "usuario", "choferes", "recaudaciones"],
+  whitelist: [
+    "darkMode",
+    "autenticacion",
+    "usuario",
+    "choferes",
+    "recaudaciones",
+    "choques",
+  ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

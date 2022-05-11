@@ -3,3 +3,4 @@ export const GET_CHOFERES = "GET_CHOFERES";
 export const AUTENTICACION = "AUTENTICACION";
 export const GET_USUARIO = "GET_USUARIO";
 export const GET_RECAUDACIONES = "GET_RECAUDACIONES";
+export const GET_CHOQUES = "GET_CHOQUES";
