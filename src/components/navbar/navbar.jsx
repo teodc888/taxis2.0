@@ -148,7 +148,7 @@ export default function Navbar({ setMode }) {
       <Avatar
         className={classes.avatar}
         src={"https://cdn-icons-png.flaticon.com/512/1801/1801444.png"}
-        alt="Nuevo Rumbos"
+        alt="Taxis"
       />
       <Divider />
       <List>
@@ -205,7 +205,7 @@ export default function Navbar({ setMode }) {
           width: "auto",
         });
       }
-    }, 300);
+    }, 500);
   };
 
   const handlePerfil = () => {
@@ -235,7 +235,7 @@ export default function Navbar({ setMode }) {
           ) : (
             <>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                BIENVENIDO
+                BIENVENIDOS
               </Typography>
             </>
           )}

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 //React
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //Router
 import { useNavigate } from "react-router";
@@ -44,45 +44,60 @@ function Copyright(props) {
   );
 }
 
-// const validateForm = (input) => {
-//   console.log(input);
-//   let error = {};
-//   const expresionRegular = /[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/;
-//   if (!expresionRegular.test(input.correo)) {
-//     error.correo = "Escriba un mail correcto";
-//   }else{
-//       console.log("mail correcto");
-//   }
+const validateForm = (input) => {
+  let error = {};
+  console.log(input);
+  const expReg =
+    /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 
-//   return error;
-// };
+  let validacion = expReg.test(input.email);
+
+  if (!validacion) {
+    error.correo = "EL mail es incorrecto";
+  }
+
+  return error;
+};
 
 const theme = createTheme();
 
 export default function Register() {
   const navigate = useNavigate();
   const [correo, setCorreo] = useState("");
-  const [contraseña, setContraseña] = useState("");
-//   const [error, setError] = useState({});
+  const [contraseña1, setContraseña1] = useState("");
+  const [contraseña2, setContraseña2] = useState("");
+  const [contraseña3, setContraseña3] = useState("");
+  const [error, setError] = useState({});
 
   // cargamos los inputs en cada estado
   const handleChange = (e) => {
     if (e.target.name === "email") {
       setCorreo(e.target.value);
-    } else if (e.target.name === "password") {
-      setContraseña(e.target.value);
+      setError(validateForm({ ...correo, [e.target.name]: e.target.value }));
+    } else if (e.target.name === "password1") {
+      setContraseña1(e.target.value);
+    } else if (e.target.name === "password2") {
+      setContraseña2(e.target.value);
     }
   };
 
+  useEffect(() => {
+    if (contraseña1 === contraseña2) {
+      setContraseña3(contraseña1);
+    }
+  }, [contraseña1, contraseña2]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createUserWithEmailAndPassword(auth, correo, contraseña);
+    await createUserWithEmailAndPassword(auth, correo, contraseña3);
     navigate("/");
   };
 
   const handleLogin = () => {
     navigate("/");
   };
+
+  console.log(contraseña3.length > 0);
 
   return (
     <ThemeProvider theme={theme}>
@@ -137,17 +152,35 @@ export default function Register() {
                 autoComplete="email"
                 autoFocus
                 onChange={handleChange}
+                helperText={error.correo}
+                error={error.correo ? true : false}
               />
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"
+                name="password1"
                 label="Password"
                 type="password"
-                id="password"
+                id="password1"
                 autoComplete="current-password"
                 onChange={handleChange}
+                error={contraseña3.length < 0 ? true : false}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password2"
+                label="Password"
+                type="password"
+                id="password2"
+                autoComplete="current-password"
+                onChange={handleChange}
+                helperText={
+                  contraseña3.length === 0 && "las contraseñas no coinciden"
+                }
+                error={contraseña3.length < 0 ? true : false}
               />
               <Button
                 type="submit"

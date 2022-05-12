@@ -1,14 +1,11 @@
 import React from "react";
 
-import {
-  Stack,
-  Card,
-  CardMedia,
-  Button,
-  Grid,
-  Box,
-} from "@mui/material";
+import { Stack, Card, CardMedia, Button, Grid, Box } from "@mui/material";
 
+//components
+import CardTaxi from "../card/card";
+
+//imagen
 import Portada from "../../image/portada.png";
 
 export default function Home() {
@@ -72,6 +69,26 @@ export default function Home() {
               >
                 CHOQUES
               </Button>
+            </Grid>
+          </Grid>
+        </Box>
+        <Box sx={{ width: "100%", mt: "5%" }}>
+          <Grid
+            container
+            spacing={{ xs: 3, md: 6 }}
+            columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+          >
+            <Grid item xs={4} sm={8} md={5.33} lg={4}>
+              <CardTaxi />
+            </Grid>
+            <Grid item xs={4} sm={8} md={5.33} lg={4}>
+              <CardTaxi />
+            </Grid>
+            <Grid item xs={4} sm={8} md={5.33} lg={4}>
+              <CardTaxi />
+            </Grid>
+            <Grid item xs={4} sm={8} md={5.33} lg={4}>
+              <CardTaxi />
             </Grid>
           </Grid>
         </Box>

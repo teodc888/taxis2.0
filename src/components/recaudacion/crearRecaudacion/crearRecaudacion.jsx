@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 
 //Mui
-import { TextField, Grid, Box, Button, Stack, Typography } from "@mui/material";
+import {
+  TextField,
+  Grid,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 
 //firebase
 import { addDoc, collection } from "firebase/firestore";
@@ -20,6 +31,7 @@ export default function CrearRecaudacion() {
     gnc: "",
     kilometros: "",
     gastoExtra: "",
+    chofer: "",
   });
 
   const handleChange = (e) => {
@@ -29,6 +41,11 @@ export default function CrearRecaudacion() {
     });
   };
 
+  const handleSelectChofer = function (e) {
+    setInput({ ...input, chofer: e.target.value });
+  };
+
+  const choferes = useSelector((state) => state.choferes);
   const usuario = useSelector((state) => state.usuario);
 
   const handleSubmit = async (e) => {
@@ -82,6 +99,29 @@ export default function CrearRecaudacion() {
               spacing={{ xs: 3, md: 6 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Chofer
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={input.chofer}
+                      label="Chofer"
+                      onChange={handleSelectChofer}
+                    >
+                      {choferes &&
+                        choferes.map((chofer) => (
+                          <MenuItem key={chofer.id} value={chofer.nombre}>
+                            {chofer.nombre}
+                          </MenuItem>
+                        ))}
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"

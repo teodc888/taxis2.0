@@ -1,9 +1,14 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+
+import {
+  CardActionArea,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  CardHeader,
+  Avatar,
+} from "@mui/material";
 
 export default function CardTaxi({
   imagen,
@@ -25,6 +30,7 @@ export default function CardTaxi({
   placa,
   poliza,
   seguro,
+  chofer,
 }) {
   return (
     <>
@@ -58,27 +64,32 @@ export default function CardTaxi({
         </Card>
       ) : tipo === "recaudacion" ? (
         <Card sx={{ maxWidth: 400, margin: "auto" }}>
-          <CardActionArea>
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {dia}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Total: {total}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Gnc: {gnc}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Kilometros: {kilometros}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Gastos Extra: {gastoExtra}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <CardHeader
+            avatar={
+              <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
+            }
+            title={chofer}
+          />
+
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {dia}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Total: {total}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Gnc: {gnc}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Kilometros: {kilometros}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Gastos Extra: {gastoExtra}
+            </Typography>
+          </CardContent>
         </Card>
-      ) : (
+      ) : tipo === "choque" ? (
         <>
           <Card sx={{ maxWidth: 400, margin: "auto" }}>
             <CardActionArea>
@@ -117,6 +128,26 @@ export default function CardTaxi({
             </CardActionArea>
           </Card>
         </>
+      ) : (
+        <Card sx={{ maxWidth: 400 }}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height="140"
+              image="/static/images/cards/contemplative-reptile.jpg"
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Lizard
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
       )}
     </>
   );
