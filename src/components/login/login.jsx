@@ -17,8 +17,6 @@ import {
   Box,
   Grid,
   Typography,
-  createTheme,
-  ThemeProvider,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
@@ -50,8 +48,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-const theme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
@@ -120,95 +116,93 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
+    <Grid container component="main" sx={{ height: "90vh", mt: "1%" }}>
+      <CssBaseline />
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage:
+            "url(https://media2.giphy.com/media/qhoJO39I5NGrMXsw9L/giphy.gif?cid=ecf05e47h6qbsbjx72fc1xbuu3vwp5ca7fyk5uqecmmd6wcm&rid=giphy.gif&ct=g)",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: (t) =>
+            t.palette.mode === "light"
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
           sx={{
-            backgroundImage:
-              "url(https://media2.giphy.com/media/qhoJO39I5NGrMXsw9L/giphy.gif?cid=ecf05e47h6qbsbjx72fc1xbuu3vwp5ca7fyk5uqecmmd6wcm&rid=giphy.gif&ct=g)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            my: 8,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        >
+          <Avatar sx={{ m: 1, bgcolor: "#ffd600", color: "black" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Iniciar Sesión
+          </Typography>
           <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 1 }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "#ffd600", color: "black" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Iniciar Sesión
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Mail"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Contraseña"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={handleChange}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Mail"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={handleChange}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Contraseña"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={handleChange}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Iniciar Sesión
-              </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Button sx={{ fontSize: "13px" }} onClick={handleGoogleLogin}>
-                    Iniciar Sesión con Google
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button sx={{ fontSize: "13px" }} onClick={handleRegister}>
-                    "No tienes cuenta? Crear Una!"
-                  </Button>
-                </Grid>
+              Iniciar Sesión
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Button sx={{ fontSize: "13px" }} onClick={handleGoogleLogin}>
+                  Iniciar Sesión con Google
+                </Button>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+              <Grid item>
+                <Button sx={{ fontSize: "13px" }} onClick={handleRegister}>
+                  "No tienes cuenta? Crear Una!"
+                </Button>
+              </Grid>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
-        </Grid>
+        </Box>
       </Grid>
-    </ThemeProvider>
+    </Grid>
   );
 }

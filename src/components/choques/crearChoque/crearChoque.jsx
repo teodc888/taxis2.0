@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //Mui
 import {
@@ -18,12 +18,30 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/firebaseConfig";
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {getChoferesFirebase} from "../../../redux/actions/index";
 
 //Swal
 import Swal from "sweetalert2";
 
 export default function CrearChoque() {
+
+  const dispatch = useDispatch();
+
+  //traer todos los choferes
+  const choferes = useSelector((state) => state.choferes);
+  const usuario = useSelector((state) => state.usuario);
+  const autenticacion = useSelector((state) => state.autenticacion);
+
+
+  useEffect(() => {
+    if (autenticacion === true) {
+      dispatch(getChoferesFirebase(usuario.email));
+    }
+  }, [dispatch, autenticacion, usuario]);
+
+
+  //cargar choques
   const [input, setInput] = useState({
     dia: "",
     fotos: "",
@@ -48,9 +66,6 @@ export default function CrearChoque() {
   const handleSelectChofer = function (e) {
     setInput({ ...input, chofer: e.target.value });
   };
-
-  const choferes = useSelector((state) => state.choferes);
-  const usuario = useSelector((state) => state.usuario);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
