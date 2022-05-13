@@ -2,6 +2,9 @@ import React, { useState } from "react";
 
 //Mui
 import { TextField, Grid, Box, Button, Stack, Typography } from "@mui/material";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
 
 //firebase
 import { addDoc, collection } from "firebase/firestore";
@@ -14,9 +17,16 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 export default function CrearChofer() {
+  const [value, setValue] = useState(new Date());
+
+  let fecha =
+    value &&
+    value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+
   const [input, setInput] = useState({
     nombre: "",
     apellido: "",
+    fechaDeNacimiento: fecha,
     documento: "",
     telefono: "",
     carnet: "",
@@ -105,6 +115,30 @@ export default function CrearChofer() {
                   required
                   value={input.apellido}
                 />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <MobileDatePicker
+                    variant="success"
+                    label="Dia"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                      setInput({
+                        ...input,
+                        dia:
+                          newValue.getDate() +
+                          "/" +
+                          (newValue.getMonth() + 1) +
+                          "/" +
+                          newValue.getFullYear(),
+                      });
+                    }}
+                    renderInput={(params) => (
+                      <TextField sx={{ width: "100%" }} {...params} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField

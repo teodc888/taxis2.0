@@ -13,19 +13,23 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
+
 //firebase
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/firebaseConfig";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
-import {getChoferesFirebase} from "../../../redux/actions/index";
+import { getChoferesFirebase } from "../../../redux/actions/index";
 
 //Swal
 import Swal from "sweetalert2";
 
 export default function CrearChoque() {
-
+  const [value, setValue] = useState(new Date());
   const dispatch = useDispatch();
 
   //traer todos los choferes
@@ -33,17 +37,19 @@ export default function CrearChoque() {
   const usuario = useSelector((state) => state.usuario);
   const autenticacion = useSelector((state) => state.autenticacion);
 
-
   useEffect(() => {
     if (autenticacion === true) {
       dispatch(getChoferesFirebase(usuario.email));
     }
   }, [dispatch, autenticacion, usuario]);
 
+  let fecha =
+    value &&
+    value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
 
   //cargar choques
   const [input, setInput] = useState({
-    dia: "",
+    dia: fecha,
     fotos: "",
     seguro: "",
     poliza: "",
@@ -147,15 +153,28 @@ export default function CrearChoque() {
                 </Box>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Dia"
-                  name="dia"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.dia}
-                />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <MobileDatePicker
+                    variant="success"
+                    label="Dia"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                      setInput({
+                        ...input,
+                        dia:
+                          newValue.getDate() +
+                          "/" +
+                          (newValue.getMonth() + 1) +
+                          "/" +
+                          newValue.getFullYear(),
+                      });
+                    }}
+                    renderInput={(params) => (
+                      <TextField sx={{ width: "100%" }} {...params} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField

@@ -13,6 +13,9 @@ import {
   FormControl,
   Select,
 } from "@mui/material";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import MobileDatePicker from "@mui/lab/MobileDatePicker";
 
 //firebase
 import { addDoc, collection } from "firebase/firestore";
@@ -26,8 +29,9 @@ import { getChoferesFirebase } from "../../../redux/actions/index";
 import Swal from "sweetalert2";
 
 export default function CrearRecaudacion() {
+  const [value, setValue] = useState(new Date());
   const dispatch = useDispatch();
-  
+
   //trae todos los choferes
   const choferes = useSelector((state) => state.choferes);
   const usuario = useSelector((state) => state.usuario);
@@ -39,14 +43,19 @@ export default function CrearRecaudacion() {
     }
   }, [dispatch, autenticacion, usuario]);
 
+  let fecha =
+    value &&
+    value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+
   //cargar recaudaciones
   const [input, setInput] = useState({
-    dia: "",
+    dia: fecha,
     total: "",
     gnc: "",
     kilometros: "",
-    gastoExtra: "",
+    gastoExtra: 0,
     chofer: "",
+    turno: "",
   });
 
   const handleChange = (e) => {
@@ -58,6 +67,10 @@ export default function CrearRecaudacion() {
 
   const handleSelectChofer = function (e) {
     setInput({ ...input, chofer: e.target.value });
+  };
+
+  const handleSelectTurno = function (e) {
+    setInput({ ...input, turno: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -123,10 +136,15 @@ export default function CrearRecaudacion() {
                       value={input.chofer}
                       label="Chofer"
                       onChange={handleSelectChofer}
+                      sx={{ textTransform: "capitalize" }}
                     >
                       {choferes &&
                         choferes.map((chofer) => (
-                          <MenuItem key={chofer.id} value={chofer.nombre}>
+                          <MenuItem
+                            key={chofer.id}
+                            value={chofer.nombre}
+                            sx={{ textTransform: "capitalize" }}
+                          >
                             {chofer.nombre}
                           </MenuItem>
                         ))}
@@ -135,15 +153,47 @@ export default function CrearRecaudacion() {
                 </Box>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Dia"
-                  name="dia"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.dia}
-                />
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Turno</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={input.turno}
+                      label="turno"
+                      name="turno"
+                      onChange={handleSelectTurno}
+                    >
+                      <MenuItem value={"mañana"}>Mañana</MenuItem>
+                      <MenuItem value={"tarde"}>Tarde</MenuItem>
+                      <MenuItem value={"noche"}>Noche</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <MobileDatePicker
+                    variant="success"
+                    label="Dia"
+                    value={value}
+                    onChange={(newValue) => {
+                      setValue(newValue);
+                      setInput({
+                        ...input,
+                        dia:
+                          newValue.getDate() +
+                          "/" +
+                          (newValue.getMonth() + 1) +
+                          "/" +
+                          newValue.getFullYear(),
+                      });
+                    }}
+                    renderInput={(params) => (
+                      <TextField sx={{ width: "100%" }} {...params} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField

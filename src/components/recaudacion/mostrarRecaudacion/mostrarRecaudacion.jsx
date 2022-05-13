@@ -34,7 +34,7 @@ export default function MostrarRecaudacion() {
         >
           {recaudaciones &&
             recaudaciones.map((recaudacion) => (
-              <Grid item xs={4} sm={8} md={16} lg={16} key={recaudacion.id}>
+              <Grid item xs={4} sm={8} md={8} lg={8} key={recaudacion.id}>
                 <CardTaxi
                   tipo={"recaudacion"}
                   dia={recaudacion.dia}
@@ -43,6 +43,7 @@ export default function MostrarRecaudacion() {
                   total={recaudacion.total}
                   gastoExtra={recaudacion.gastoExtra}
                   chofer={recaudacion.chofer}
+                  turno={recaudacion.turno}
                 />
               </Grid>
             ))}

@@ -31,6 +31,7 @@ export default function CardTaxi({
   poliza,
   seguro,
   chofer,
+  turno,
 }) {
   return (
     <>
@@ -72,12 +73,19 @@ export default function CardTaxi({
             avatar={
               <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
             }
+            sx={{ textTransform: "capitalize" }}
             title={chofer}
           />
-
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {dia}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ textTransform: "capitalize" }}
+            >
+              Turno: {turno}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Total: {total}
@@ -96,40 +104,48 @@ export default function CardTaxi({
       ) : tipo === "choque" ? (
         <>
           <Card sx={{ maxWidth: 400, margin: "auto" }}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="240"
-                image={fotos}
-                alt="green iguana"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Dia {dia}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {nombre} {apellido}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Documento: {dni}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Telefono: {telefono}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Seguro: {seguro}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Poliza: {poliza}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Marca: {marca}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Placa: {placa}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
+            <CardHeader
+              avatar={
+                <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
+              }
+              title={chofer}
+            />
+            <CardMedia
+              component="img"
+              height="240"
+              image={
+                fotos
+                  ? fotos
+                  : "https://us.123rf.com/450wm/topvectors/topvectors1903/topvectors190300825/118744560-ilustraci%C3%B3n-de-vector-de-riesgo-de-accidente-y-seguro-de-coche.jpg?ver=6"
+              }
+              alt="green iguana"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                Dia {dia}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {nombre} {apellido}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Documento: {dni}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Telefono: {telefono}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Seguro: {seguro}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Poliza: {poliza}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Marca: {marca}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                Placa: {placa}
+              </Typography>
+            </CardContent>
           </Card>
         </>
       ) : (

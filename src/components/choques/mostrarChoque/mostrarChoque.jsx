@@ -49,6 +49,7 @@ export default function MostrarChoques() {
                   placa={choques.placa}
                   fotos={choques.fotos}
                   tipo="choque"
+                  chofer={choques.chofer}
                 />
               </Grid>
             ))}
