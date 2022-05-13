@@ -7,18 +7,26 @@ import CardTaxi from "../card/card";
 
 //imagen
 import Portada from "../../image/portada.png";
+import Portada1 from "../../image/portada1.png";
 
 export default function Home() {
   return (
     <div>
       <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
-        <Card sx={{ width: "100%", mt: "1%" }}>
+        <Card sx={{ maxWidth: "100%", mt: "1%"  }}>
           <CardMedia
+            sx={{ display: { xs: "none", md: "block" } }}
             component="img"
             height="100%"
             image={Portada}
             alt="green iguana"
-            sx={{ objectFit: "contain" }}
+          />
+          <CardMedia
+            sx={{ display: { xs: "block", md: "none" } }}
+            component="img"
+            height="100%"
+            image={Portada1}
+            alt="green iguana"
           />
         </Card>
 

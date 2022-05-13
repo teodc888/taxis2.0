@@ -133,7 +133,7 @@ export default function CardTaxi({
           </Card>
         </>
       ) : (
-        <Card sx={{ maxWidth: 400 }}>
+        <Card sx={{ maxWidth: 400, margin: "auto" }}>
           <CardActionArea>
             <CardMedia
               component="img"
