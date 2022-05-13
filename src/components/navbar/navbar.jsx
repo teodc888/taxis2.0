@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(13),
   },
   listItem: {
-    color: "red",
+    color: "#ffc400",
   },
   listText: {
     color: "white",

@@ -35,32 +35,31 @@ export default function CardTaxi({
   return (
     <>
       {tipo === "chofer" ? (
-        <Card sx={{ maxWidth: 400, margin: "auto" }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="240"
-              image={imagen}
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {nombre} {apellido}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Documento: {documento}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Telefono: {telefono}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Carnet {carnet}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Fecha de vencimiento {fdv}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+        <Card sx={{ maxWidth: 400, margin: "auto", borderRadius: "5%" }}>
+          <CardMedia
+            component="img"
+            height="240"
+            image={imagen}
+            alt="usuario"
+            sx={{ objectFit: "contain" }}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {nombre} {apellido}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Documento: {documento}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Telefono: {telefono}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Carnet {carnet}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Fecha de vencimiento {fdv}
+            </Typography>
+          </CardContent>
         </Card>
       ) : tipo === "recaudacion" ? (
         <Card sx={{ maxWidth: 400, margin: "auto" }}>
@@ -133,17 +132,16 @@ export default function CardTaxi({
           <CardActionArea>
             <CardMedia
               component="img"
-              height="140"
-              image="/static/images/cards/contemplative-reptile.jpg"
+              height="200"
+              image="https://es.seaicons.com/wp-content/uploads/2015/06/Bar-chart-icon.png"
               alt="green iguana"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                Lizard
+                Graficos
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
+                numero
               </Typography>
             </CardContent>
           </CardActionArea>

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 //Mui
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Container } from "@mui/material";
 
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -88,28 +89,33 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar setMode={setMode} />
-        <Routes>
-          {autenticacion === false ? (
-            <>
-              <Route path="/" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<Home />} />
-              <Route path="/crearChofer" element={<CrearChofer />} />
-              <Route path="/mostrarChofer" element={<MostrarChofer />} />
-              <Route path="/crearRecaudacion" element={<CrearRecaudacion />} />
-              <Route
-                path="/mostrarRecaudacion"
-                element={<MostrarRecaudacion />}
-              />
-              <Route path="/perfil" element={<Perfil />} />
-              <Route path="/crearChoque" element={<CrearChoque />} />
-              <Route path="/mostrarChoque" element={<MostrarChoque />} />
-            </>
-          )}
-        </Routes>
+        <Container maxWidth="xl">
+          <Routes>
+            {autenticacion === false ? (
+              <>
+                <Route path="/" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+              </>
+            ) : (
+              <>
+                <Route path="/" element={<Home />} />
+                <Route path="/crearChofer" element={<CrearChofer />} />
+                <Route path="/mostrarChofer" element={<MostrarChofer />} />
+                <Route
+                  path="/crearRecaudacion"
+                  element={<CrearRecaudacion />}
+                />
+                <Route
+                  path="/mostrarRecaudacion"
+                  element={<MostrarRecaudacion />}
+                />
+                <Route path="/perfil" element={<Perfil />} />
+                <Route path="/crearChoque" element={<CrearChoque />} />
+                <Route path="/mostrarChoque" element={<MostrarChoque />} />
+              </>
+            )}
+          </Routes>
+        </Container>
         <ToastContainer />
       </ThemeProvider>
     </div>

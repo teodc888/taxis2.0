@@ -34,10 +34,10 @@ export default function MostrarChofer() {
         >
           {choferes &&
             choferes.map((chofer) => (
-              <Grid item xs={4} sm={8} md={16} lg={16} key={chofer.id}>
+              <Grid item xs={4} sm={8} md={8} lg={8} key={chofer.id}>
                 <CardTaxi
                   imagen={
-                    "https://upload.wikimedia.org/wikipedia/commons/d/d3/User_Circle.png"
+                    "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
                   }
                   nombre={chofer.nombre}
                   apellido={chofer.apellido}
