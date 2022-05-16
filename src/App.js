@@ -85,7 +85,7 @@ function App() {
   }, [autenticacion, dispatch, usuario]);
 
   return (
-    <div>
+    <div className="App">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Navbar setMode={setMode} />

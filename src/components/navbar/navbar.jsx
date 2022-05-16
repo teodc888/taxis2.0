@@ -214,7 +214,7 @@ export default function Navbar({ setMode }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "#ffc400", color:"black" }}>
+      <AppBar position="fixed" sx={{ bgcolor: "#ffc400", color:"black" }}>
         <Toolbar>
           {autenticacion ? (
             <>

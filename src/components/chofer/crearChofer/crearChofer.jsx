@@ -1,7 +1,18 @@
 import React, { useState } from "react";
 
 //Mui
-import { TextField, Grid, Box, Button, Stack, Typography } from "@mui/material";
+import {
+  TextField,
+  Grid,
+  Box,
+  Button,
+  Stack,
+  Typography,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
@@ -18,10 +29,19 @@ import Swal from "sweetalert2";
 
 export default function CrearChofer() {
   const [value, setValue] = useState(new Date());
+  const [value1, setValue1] = useState(new Date());
 
   let fecha =
     value &&
     value.getDate() + "/" + (value.getMonth() + 1) + "/" + value.getFullYear();
+
+  let fechaDV =
+    value1 &&
+    value1.getDate() +
+      "/" +
+      (value1.getMonth() + 1) +
+      "/" +
+      value1.getFullYear();
 
   const [input, setInput] = useState({
     nombre: "",
@@ -29,8 +49,9 @@ export default function CrearChofer() {
     fechaDeNacimiento: fecha,
     documento: "",
     telefono: "",
-    carnet: "",
-    fdv: "",
+    carnet: "si",
+    fdv: fechaDV,
+    imagen:"",
   });
 
   const handleChange = (e) => {
@@ -38,6 +59,26 @@ export default function CrearChofer() {
       ...input,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleSelectCarnet = function (e) {
+    setInput({ ...input, carnet: e.target.value });
+  };
+
+  const handleFiles = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "d3bholnc ");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dellacqua-shops/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    setInput({ ...input, imagen: file.secure_url });
   };
 
   const usuario = useSelector((state) => state.usuario);
@@ -60,10 +101,11 @@ export default function CrearChofer() {
       setInput({
         nombre: "",
         apellido: "",
+        fechaDeNacimiento: fecha,
         documento: "",
         telefono: "",
-        carnet: "",
-        fdv: "",
+        carnet: "si",
+        fdv: fechaDV,
       });
     } catch (error) {
       console.log(error);
@@ -76,6 +118,8 @@ export default function CrearChofer() {
       });
     }
   };
+
+  console.log(input);
 
   return (
     <div>
@@ -117,10 +161,13 @@ export default function CrearChofer() {
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField type="file" name="images" onChange={handleFiles} fullWidth  />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
                   <MobileDatePicker
                     variant="success"
-                    label="Dia"
+                    label="Dia de nacimiento"
                     value={value}
                     onChange={(newValue) => {
                       setValue(newValue);
@@ -165,26 +212,48 @@ export default function CrearChofer() {
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Carnet de conducir"
-                  name="carnet"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.carnet}
-                />
+                <Box sx={{ minWidth: 120 }}>
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">
+                      Carnet de taxi
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={input.carnet}
+                      label="Carnet de taxi"
+                      onChange={handleSelectCarnet}
+                      sx={{ textTransform: "capitalize" }}
+                    >
+                      <MenuItem value="si">Si</MenuItem>
+                      <MenuItem value="no">No</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Fecha de vencimiento"
-                  name="fdv"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.fdv}
-                />
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <MobileDatePicker
+                    variant="success"
+                    label="Fecha de vencimiento del carnet"
+                    value={value1}
+                    onChange={(newValue) => {
+                      setValue1(newValue);
+                      setInput({
+                        ...input,
+                        fdv:
+                          newValue.getDate() +
+                          "/" +
+                          (newValue.getMonth() + 1) +
+                          "/" +
+                          newValue.getFullYear(),
+                      });
+                    }}
+                    renderInput={(params) => (
+                      <TextField sx={{ width: "100%" }} {...params} />
+                    )}
+                  />
+                </LocalizationProvider>
               </Grid>
             </Grid>
           </Box>

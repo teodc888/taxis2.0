@@ -1,6 +1,10 @@
 import React from "react";
 
+//Mui
 import { Stack, Card, CardMedia, Button, Grid, Box } from "@mui/material";
+
+//router
+import { useNavigate } from "react-router-dom";
 
 //components
 import CardTaxi from "../card/card";
@@ -10,10 +14,26 @@ import Portada from "../../image/portada.png";
 import Portada1 from "../../image/portada1.png";
 
 export default function Home() {
+  const navigate = useNavigate();
+
+  const handleRecaudacion = () => {
+    navigate("/mostrarRecaudacion");
+  };
+
+  const handleChoferes = () => {
+    navigate("/mostrarChofer");
+  };
+
+
+  const handleChoque = () => {
+    navigate("/mostrarChoque");
+  };
+
+
   return (
     <div>
       <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
-        <Card sx={{ maxWidth: "100%", mt: "1%"  }}>
+        <Card sx={{ maxWidth: "100%", mt: "1%" }}>
           <CardMedia
             sx={{ display: { xs: "none", md: "block" } }}
             component="img"
@@ -46,6 +66,7 @@ export default function Home() {
                   bgcolor: "#212121",
                   color: "white",
                 }}
+                onClick={handleRecaudacion}
               >
                 RECAUDACIONES
               </Button>
@@ -60,6 +81,7 @@ export default function Home() {
                   bgcolor: "#212121",
                   color: "white",
                 }}
+                onClick={handleChoferes}
               >
                 CHOFERES
               </Button>
@@ -74,6 +96,7 @@ export default function Home() {
                   bgcolor: "#212121",
                   color: "white",
                 }}
+                onClick={handleChoque}
               >
                 CHOQUES
               </Button>

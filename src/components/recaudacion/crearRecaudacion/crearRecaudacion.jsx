@@ -164,9 +164,8 @@ export default function CrearRecaudacion() {
                       name="turno"
                       onChange={handleSelectTurno}
                     >
-                      <MenuItem value={"mañana"}>Mañana</MenuItem>
-                      <MenuItem value={"tarde"}>Tarde</MenuItem>
-                      <MenuItem value={"noche"}>Noche</MenuItem>
+                      <MenuItem value={"mañana-tarde"}>Mañana-Tarde</MenuItem>
+                      <MenuItem value={"tarde-noche"}>Tarde-Noche</MenuItem>
                     </Select>
                   </FormControl>
                 </Box>

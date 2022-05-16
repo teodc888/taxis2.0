@@ -24,6 +24,8 @@ export default function MostrarChofer() {
     }
   }, [dispatch, autenticacion, usuario]);
 
+  console.log(choferes);
+
   return (
     <>
       <Box sx={{ width: "100%", mt: "1%" }}>
@@ -37,7 +39,9 @@ export default function MostrarChofer() {
               <Grid item xs={4} sm={8} md={8} lg={8} key={chofer.id}>
                 <CardTaxi
                   imagen={
-                    "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    chofer.imagen
+                      ? chofer.imagen
+                      : "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
                   }
                   nombre={chofer.nombre}
                   apellido={chofer.apellido}
@@ -46,6 +50,7 @@ export default function MostrarChofer() {
                   telefono={chofer.telefono}
                   carnet={chofer.carnet}
                   tipo="chofer"
+                  fechaDeNacimiento={chofer.fechaDeNacimiento}
                 />
               </Grid>
             ))}
