@@ -1,14 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 //Mui
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Stack, Typography, Button } from "@mui/material";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 import { getRecaudacionesFirebase } from "../../../redux/actions/index";
 
+import { ToastContainer } from "react-toastify";
+
 //Componentes
 import CardTaxi from "../../card/card";
+import Paginado from "../../paginado/paginado";
 
 export default function MostrarRecaudacion() {
   const dispatch = useDispatch();
@@ -24,16 +27,73 @@ export default function MostrarRecaudacion() {
     }
   }, [dispatch, autenticacion, usuario]);
 
+  // Paginado
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productoPorPagina] = useState(6);
+  const indeceDelUltimoProducto = currentPage * productoPorPagina; // 10
+  const indiceDelPrimerProducto = indeceDelUltimoProducto - productoPorPagina; // 0
+  const currentRecaudaciones = recaudaciones.slice(
+    indiceDelPrimerProducto,
+    indeceDelUltimoProducto
+  );
+  const paginado = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <>
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        spacing={2}
+      >
+        <Typography variant="h4">Recaudaciones</Typography>
+        <Box sx={{ width: "100%", mt: "1%" }}>
+          <Grid
+            container
+            spacing={{ xs: 3, md: 6 }}
+            columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+          >
+            <Grid item xs={4} sm={8} md={4} lg={4}>
+              <Button variant="contained" color="primary" fullWidth>
+                Turno 1
+              </Button>
+            </Grid>
+            <Grid item xs={4} sm={8} md={4} lg={4}>
+              <Button variant="contained" color="primary" fullWidth>
+                Turno 1
+              </Button>
+            </Grid>
+            <Grid item xs={4} sm={8} md={4} lg={4}>
+              <Button variant="contained" color="primary" fullWidth>
+                Turno 1
+              </Button>
+            </Grid>
+            <Grid item xs={4} sm={8} md={4} lg={4}>
+              <Button variant="contained" color="primary" fullWidth>
+                Turno 1
+              </Button>
+            </Grid>
+          </Grid>
+        </Box>
+        <Paginado
+          productoPorPagina={productoPorPagina}
+          productos={recaudaciones.length}
+          paginado={paginado}
+          setCurrentPage={setCurrentPage}
+          currentPage={currentPage}
+        />
+      </Stack>
       <Box sx={{ width: "100%", mt: "1%" }}>
         <Grid
           container
           spacing={{ xs: 3, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
         >
-          {recaudaciones &&
-            recaudaciones.map((recaudacion) => (
+          {currentRecaudaciones &&
+            currentRecaudaciones.map((recaudacion) => (
               <Grid item xs={4} sm={8} md={8} lg={8} key={recaudacion.id}>
                 <CardTaxi
                   tipo={"recaudacion"}
@@ -49,6 +109,7 @@ export default function MostrarRecaudacion() {
             ))}
         </Grid>
       </Box>
+      <ToastContainer />
     </>
   );
 }

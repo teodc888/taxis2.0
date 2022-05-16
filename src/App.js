@@ -1,5 +1,7 @@
 import "./App.css";
 import * as React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 //react
 import { useEffect, useState } from "react";
@@ -116,8 +118,8 @@ function App() {
             )}
           </Routes>
         </Container>
-        <ToastContainer />
       </ThemeProvider>
+      <ToastContainer />
     </div>
   );
 }

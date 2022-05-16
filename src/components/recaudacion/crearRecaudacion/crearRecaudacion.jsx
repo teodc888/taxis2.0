@@ -89,11 +89,13 @@ export default function CrearRecaudacion() {
       });
       console.log(docRef);
       setInput({
-        dia: "",
+        dia: fecha,
         total: "",
         gnc: "",
         kilometros: "",
-        gastoExtra: "",
+        gastoExtra: 0,
+        chofer: "",
+        turno: "",
       });
     } catch (error) {
       console.log(error);
