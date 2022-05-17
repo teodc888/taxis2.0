@@ -5,6 +5,8 @@ import {
   GET_CHOFERES,
   GET_RECAUDACIONES,
   GET_CHOQUES,
+  FILTRADO_NOMBRE,
+  FILTRADO_TURNO,
 } from "./actionsType";
 
 import { collection, getDocs } from "firebase/firestore";
@@ -78,6 +80,20 @@ export const verificarAutenticacion = (payload) => {
 export const getUsuario = (payload) => {
   return {
     type: GET_USUARIO,
+    payload,
+  };
+};
+
+export const filtradoNombre = (payload) => {
+  return {
+    type: FILTRADO_NOMBRE,
+    payload,
+  };
+};
+
+export const filtradoTurno = (payload) => {
+  return {
+    type: FILTRADO_TURNO,
     payload,
   };
 };

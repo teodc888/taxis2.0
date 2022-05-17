@@ -13,6 +13,7 @@ const persistConfig = {
     "choferes",
     "recaudaciones",
     "choques",
+    "filtroRecaudaciones",
   ],
 };
 

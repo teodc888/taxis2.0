@@ -5,6 +5,8 @@ import {
   GET_CHOFERES,
   GET_RECAUDACIONES,
   GET_CHOQUES,
+  FILTRADO_NOMBRE,
+  FILTRADO_TURNO,
 } from "../actions/actionsType";
 
 const inicialState = {
@@ -13,7 +15,13 @@ const inicialState = {
   usuario: {},
   choferes: [],
   recaudaciones: [],
+  filtroRecaudaciones: [],
   choques: [],
+  filtrado: {
+    nombre: "",
+    total: "",
+    turno: "",
+  },
 };
 
 export default function rootReducer(state = inicialState, action) {
@@ -42,11 +50,50 @@ export default function rootReducer(state = inicialState, action) {
       return {
         ...state,
         recaudaciones: action.payload,
+        filtroRecaudaciones: action.payload,
       };
     case GET_CHOQUES:
       return {
         ...state,
         choques: action.payload,
+      };
+
+    case FILTRADO_NOMBRE:
+      const filtroNombre = [...state.filtroRecaudaciones];
+
+      const filtroN =
+        action.payload === "todos"
+          ? filtroNombre
+          : filtroNombre.filter((recaudacion) => {
+              return recaudacion.chofer === action.payload;
+            });
+
+      return {
+        ...state,
+        recaudaciones: filtroN,
+        filtrado: {
+          ...state.filtrado,
+          nombre: action.payload,
+        },
+      };
+
+    case FILTRADO_TURNO:
+      const filtroTurno = [...state.filtroRecaudaciones];
+
+      const filtroT =
+        action.payload === "todos"
+          ? filtroTurno
+          : filtroTurno.filter((recaudacion) => {
+              return recaudacion.turno === action.payload;
+            });
+
+      return {
+        ...state,
+        recaudaciones: filtroT,
+        filtrado: {
+          ...state.filtrado,
+          turno: action.payload,
+        },
       };
 
     default:
