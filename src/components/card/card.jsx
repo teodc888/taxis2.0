@@ -32,6 +32,7 @@ export default function CardTaxi({
   seguro,
   chofer,
   turno,
+  fechaDeNacimiento
 }) {
   return (
     <>
@@ -52,6 +53,9 @@ export default function CardTaxi({
               sx={{ textTransform: "capitalize" }}
             >
               {nombre} {apellido}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Fecha de nacimiento {fechaDeNacimiento}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Documento: {documento}

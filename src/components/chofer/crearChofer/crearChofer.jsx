@@ -51,7 +51,7 @@ export default function CrearChofer() {
     telefono: "",
     carnet: "si",
     fdv: fechaDV,
-    imagen:"",
+    imagen: "",
   });
 
   const handleChange = (e) => {
@@ -119,8 +119,6 @@ export default function CrearChofer() {
     }
   };
 
-  console.log(input);
-
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -161,7 +159,12 @@ export default function CrearChofer() {
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField type="file" name="images" onChange={handleFiles} fullWidth  />
+                <TextField
+                  type="file"
+                  name="images"
+                  onChange={handleFiles}
+                  fullWidth
+                />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -173,7 +176,7 @@ export default function CrearChofer() {
                       setValue(newValue);
                       setInput({
                         ...input,
-                        dia:
+                        fechaDeNacimiento:
                           newValue.getDate() +
                           "/" +
                           (newValue.getMonth() + 1) +
