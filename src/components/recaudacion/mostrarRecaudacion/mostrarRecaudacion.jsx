@@ -6,7 +6,6 @@ import {
   Box,
   Stack,
   Typography,
-  Button,
   InputLabel,
   MenuItem,
   FormControl,
@@ -20,6 +19,8 @@ import {
   getChoferesFirebase,
   filtradoNombre,
   filtradoTurno,
+  filtrarRecaudacion,
+  filtrarKilometros,
 } from "../../../redux/actions/index";
 
 import { ToastContainer } from "react-toastify";
@@ -85,6 +86,26 @@ export default function MostrarRecaudacion() {
     });
   }
 
+  function handelfiltrarPorKilometros(e) {
+    e.preventDefault();
+    setCurrentPage(1);
+    dispatch(filtrarKilometros(e.target.value));
+    setFiltro({
+      ...filtro,
+      kilometros: e.target.value,
+    });
+  }
+
+  function handelfiltrarPorRecaudacion(e) {
+    e.preventDefault();
+    setCurrentPage(1);
+    dispatch(filtrarRecaudacion(e.target.value));
+    setFiltro({
+      ...filtro,
+      total: e.target.value,
+    });
+  }
+
   return (
     <>
       <Stack
@@ -134,28 +155,6 @@ export default function MostrarRecaudacion() {
               <Box>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label">
-                    Filtrar por mayor/menor recaudacion
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={filtro.total}
-                    name="total"
-                    label="Filtrar por mayor/menor recaudacion"
-                    // onChange={(e) => handelfiltrarPorTurno(e)}
-                    sx={{ textTransform: "capitalize" }}
-                  >
-                    <MenuItem value="todos"> Todos</MenuItem>
-                    <MenuItem value="mayor"> Mayor</MenuItem>
-                    <MenuItem value="menor"> Menor</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
                     Filtrar por turno
                   </InputLabel>
                   <Select
@@ -175,9 +174,48 @@ export default function MostrarRecaudacion() {
               </Box>
             </Grid>
             <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Button variant="contained" color="primary" fullWidth>
-                Turno 1
-              </Button>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Filtrar por mayor/menor recaudacion
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={filtro.total}
+                    name="total"
+                    label="Filtrar por mayor/menor recaudacion"
+                    onChange={(e) => handelfiltrarPorRecaudacion(e)}
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    <MenuItem value="todos"> Todos</MenuItem>
+                    <MenuItem value="mayor"> Mayor</MenuItem>
+                    <MenuItem value="menor"> Menor</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Grid>
+            <Grid item xs={4} sm={8} md={4} lg={4}>
+              <Box>
+                <FormControl fullWidth>
+                  <InputLabel id="demo-simple-select-label">
+                    Filtrar por kilometros recorridos
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={filtro.kilometros}
+                    name="kilometros"
+                    label=" Filtrar por kilometros recorridos"
+                    onChange={(e) => handelfiltrarPorKilometros(e)}
+                    sx={{ textTransform: "capitalize" }}
+                  >
+                    <MenuItem value="todos"> Todos</MenuItem>
+                    <MenuItem value="mayor"> Mayor</MenuItem>
+                    <MenuItem value="menor"> Menor</MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
             </Grid>
           </Grid>
         </Box>

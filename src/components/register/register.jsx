@@ -10,15 +10,12 @@ import { useNavigate } from "react-router";
 import {
   Avatar,
   Button,
-  CssBaseline,
   TextField,
   Link,
   Paper,
   Box,
   Grid,
   Typography,
-  createTheme,
-  ThemeProvider,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
@@ -35,7 +32,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.linkedin.com/in/mateo-dellacqua-castro/">
         Mateo Dellacqua Castro
       </Link>{" "}
       {new Date().getFullYear()}
@@ -58,8 +55,6 @@ const validateForm = (input) => {
 
   return error;
 };
-
-const theme = createTheme();
 
 export default function Register() {
   const navigate = useNavigate();
@@ -97,111 +92,107 @@ export default function Register() {
     navigate("/");
   };
 
-  console.log(contraseña3.length > 0);
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "100vh" }}>
-        <CssBaseline />
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
+    <Grid container component="main" sx={{ height: "90vh", mt: "1%" }}>
+      <Grid
+        item
+        xs={false}
+        sm={4}
+        md={7}
+        sx={{
+          backgroundImage:
+            "url(https://media2.giphy.com/media/qhoJO39I5NGrMXsw9L/giphy.gif?cid=ecf05e47h6qbsbjx72fc1xbuu3vwp5ca7fyk5uqecmmd6wcm&rid=giphy.gif&ct=g)",
+          backgroundRepeat: "no-repeat",
+          backgroundColor: (t) =>
+            t.palette.mode === "light"
+              ? t.palette.grey[50]
+              : t.palette.grey[900],
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Box
           sx={{
-            backgroundImage:
-              "url(https://media2.giphy.com/media/qhoJO39I5NGrMXsw9L/giphy.gif?cid=ecf05e47h6qbsbjx72fc1xbuu3vwp5ca7fyk5uqecmmd6wcm&rid=giphy.gif&ct=g)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            my: 8,
+            mx: 4,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
-        />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        >
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Registrarse
+          </Typography>
           <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 1 }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Registrarse
-            </Typography>
-            <Box
-              component="form"
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 1 }}
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={handleChange}
+              helperText={error.correo}
+              error={error.correo ? true : false}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password1"
+              label="Password"
+              type="password"
+              id="password1"
+              autoComplete="current-password"
+              onChange={handleChange}
+              error={contraseña3.length < 0 ? true : false}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password2"
+              label="Password"
+              type="password"
+              id="password2"
+              autoComplete="current-password"
+              onChange={handleChange}
+              helperText={
+                contraseña3.length === 0 && "las contraseñas no coinciden"
+              }
+              error={contraseña3.length < 0 ? true : false}
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={handleChange}
-                helperText={error.correo}
-                error={error.correo ? true : false}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password1"
-                label="Password"
-                type="password"
-                id="password1"
-                autoComplete="current-password"
-                onChange={handleChange}
-                error={contraseña3.length < 0 ? true : false}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password2"
-                label="Password"
-                type="password"
-                id="password2"
-                autoComplete="current-password"
-                onChange={handleChange}
-                helperText={
-                  contraseña3.length === 0 && "las contraseñas no coinciden"
-                }
-                error={contraseña3.length < 0 ? true : false}
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Registrarse
-              </Button>
-              <Grid container>
-                <Grid item>
-                  <Button sx={{ fontSize: "13px" }} onClick={handleLogin}>
-                    Iniciar Sesión
-                  </Button>
-                </Grid>
+              Registrarse
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Button sx={{ fontSize: "13px" }} onClick={handleLogin}>
+                  Iniciar Sesión
+                </Button>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
-        </Grid>
+        </Box>
       </Grid>
-    </ThemeProvider>
+    </Grid>
   );
 }

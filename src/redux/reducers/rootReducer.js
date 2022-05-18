@@ -7,6 +7,8 @@ import {
   GET_CHOQUES,
   FILTRADO_NOMBRE,
   FILTRADO_TURNO,
+  FILTRAR_RECAUDACION,
+  FILTRAR_KILOMETROS,
 } from "../actions/actionsType";
 
 const inicialState = {
@@ -21,6 +23,7 @@ const inicialState = {
     nombre: "",
     total: "",
     turno: "",
+    kilometros: "",
   },
 };
 
@@ -93,6 +96,52 @@ export default function rootReducer(state = inicialState, action) {
         filtrado: {
           ...state.filtrado,
           turno: action.payload,
+        },
+      };
+
+    case FILTRAR_RECAUDACION:
+      const filtroRecaudacion = [...state.filtroRecaudaciones];
+
+      const filtroR =
+        action.payload === "todos"
+          ? filtroRecaudacion
+          : action.payload === "mayor"
+          ? filtroRecaudacion.sort((a, b) => {
+              return b.total - a.total;
+            })
+          : filtroRecaudacion.sort((a, b) => {
+              return a.total - b.total;
+            });
+
+      return {
+        ...state,
+        recaudaciones: filtroR,
+        filtrado: {
+          ...state.filtrado,
+          total: action.payload,
+        },
+      };
+
+    case FILTRAR_KILOMETROS:
+      const filtroKilometros = [...state.filtroRecaudaciones];
+
+      const filtroK =
+        action.payload === "todos"
+          ? filtroKilometros
+          : action.payload === "mayor"
+          ? filtroKilometros.sort((a, b) => {
+              return b.kilometros - a.kilometros;
+            })
+          : filtroKilometros.sort((a, b) => {
+              return a.kilometros - b.kilometros;
+            });
+
+      return {
+        ...state,
+        recaudaciones: filtroK,
+        filtrado: {
+          ...state.filtrado,
+          kilometros: action.payload,
         },
       };
 

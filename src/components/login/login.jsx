@@ -10,7 +10,6 @@ import { useNavigate } from "react-router";
 import {
   Avatar,
   Button,
-  CssBaseline,
   TextField,
   Link,
   Paper,
@@ -40,7 +39,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.linkedin.com/in/mateo-dellacqua-castro/">
         Mateo Dellacqua Castro
       </Link>{" "}
       {new Date().getFullYear()}
@@ -117,7 +116,6 @@ export default function Login() {
 
   return (
     <Grid container component="main" sx={{ height: "90vh", mt: "1%" }}>
-      <CssBaseline />
       <Grid
         item
         xs={false}

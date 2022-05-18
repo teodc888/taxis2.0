@@ -7,6 +7,8 @@ import {
   GET_CHOQUES,
   FILTRADO_NOMBRE,
   FILTRADO_TURNO,
+  FILTRAR_RECAUDACION,
+  FILTRAR_KILOMETROS,
 } from "./actionsType";
 
 import { collection, getDocs } from "firebase/firestore";
@@ -94,6 +96,20 @@ export const filtradoNombre = (payload) => {
 export const filtradoTurno = (payload) => {
   return {
     type: FILTRADO_TURNO,
+    payload,
+  };
+};
+
+export const filtrarRecaudacion = (payload) => {
+  return {
+    type: FILTRAR_RECAUDACION,
+    payload,
+  };
+};
+
+export const filtrarKilometros = (payload) => {
+  return {
+    type: FILTRAR_KILOMETROS,
     payload,
   };
 };
