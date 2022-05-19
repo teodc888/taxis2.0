@@ -64,7 +64,6 @@ export default function MostrarRecaudacion() {
 
   const [filtro, setFiltro] = useState(filtrado);
 
-  console.log(filtro);
 
   function handelfiltrarPorNombre(e) {
     e.preventDefault();

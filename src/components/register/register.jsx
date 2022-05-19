@@ -43,7 +43,6 @@ function Copyright(props) {
 
 const validateForm = (input) => {
   let error = {};
-  console.log(input);
   const expReg =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 

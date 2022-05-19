@@ -50,7 +50,7 @@ export default function CrearChoque() {
   //cargar choques
   const [input, setInput] = useState({
     dia: fecha,
-    fotos: "",
+    imagenes: [],
     seguro: "",
     poliza: "",
     nombre: "",
@@ -73,13 +73,27 @@ export default function CrearChoque() {
     setInput({ ...input, chofer: e.target.value });
   };
 
+  const handleFiles = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "d3bholnc ");
+    const res = await fetch(
+      "https://api.cloudinary.com/v1_1/dellacqua-shops/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+    const imagenes = [...input.imagenes, file.secure_url];
+    setInput({ ...input, imagenes: imagenes });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(
-        collection(db, `${usuario.email} choque`),
-        input
-      );
+      await addDoc(collection(db, `${usuario.email} choque`), input);
       Swal.fire({
         text: "se Agrego el chofer con exito",
         confirmButtonText: "Ok",
@@ -87,10 +101,9 @@ export default function CrearChoque() {
         timer: 2500,
         width: "auto",
       });
-      console.log(docRef);
       setInput({
         dia: "",
-        fotos: "",
+        imagenes: [],
         seguro: "",
         poliza: "",
         nombre: "",
@@ -111,6 +124,8 @@ export default function CrearChoque() {
       });
     }
   };
+
+  console.log(input);
 
   return (
     <>
@@ -178,13 +193,10 @@ export default function CrearChoque() {
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
-                  id="standard-basic"
-                  label="Fotos"
-                  name="fotos"
-                  onChange={handleChange}
+                  type="file"
+                  name="images"
+                  onChange={handleFiles}
                   fullWidth
-                  required
-                  value={input.fotos}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>

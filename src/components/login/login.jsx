@@ -39,7 +39,10 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://www.linkedin.com/in/mateo-dellacqua-castro/">
+      <Link
+        color="inherit"
+        href="https://www.linkedin.com/in/mateo-dellacqua-castro/"
+      >
         Mateo Dellacqua Castro
       </Link>{" "}
       {new Date().getFullYear()}
@@ -185,14 +188,34 @@ export default function Login() {
             >
               Iniciar Sesión
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Button sx={{ fontSize: "13px" }} onClick={handleGoogleLogin}>
+            <Grid container spacing={2} columns={16}>
+              <Grid item xs={8}>
+                <Button
+                  sx={{
+                    fontSize: {
+                      xs: "10px",
+                      sm: "11px",
+                      md: "11px",
+                      lg: "13px",
+                    },
+                  }}
+                  onClick={handleGoogleLogin}
+                >
                   Iniciar Sesión con Google
                 </Button>
               </Grid>
-              <Grid item>
-                <Button sx={{ fontSize: "13px" }} onClick={handleRegister}>
+              <Grid item xs={8}>
+                <Button
+                  sx={{
+                    fontSize: {
+                      xs: "10px",
+                      sm: "11px",
+                      md: "11px",
+                      lg: "11px",
+                    },
+                  }}
+                  onClick={handleRegister}
+                >
                   "No tienes cuenta? Crear Una!"
                 </Button>
               </Grid>

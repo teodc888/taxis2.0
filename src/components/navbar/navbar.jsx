@@ -41,7 +41,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import CarCrashIcon from '@mui/icons-material/CarCrash';
+import CarCrashIcon from "@mui/icons-material/CarCrash";
 
 //Slider
 import { makeStyles } from "@material-ui/core/styles";
@@ -100,7 +100,6 @@ const menuItems = [
     listText: "Mostrar Choques",
     listPath: "/mostrarChoque",
   },
-
 ];
 
 export default function Navbar({ setMode }) {
@@ -188,6 +187,7 @@ export default function Navbar({ setMode }) {
       try {
         await signOut(auth);
         dispatch(verificarAutenticacion(false));
+        console.log("cerrado");
         Swal.fire({
           text: "Sesión cerrada",
           confirmButtonText: "Ok",
@@ -195,6 +195,7 @@ export default function Navbar({ setMode }) {
           timer: 2500,
           width: "auto",
         });
+        navigate("/");
       } catch (error) {
         console.log(error);
         Swal.fire({
@@ -205,7 +206,7 @@ export default function Navbar({ setMode }) {
           width: "auto",
         });
       }
-    }, 500);
+    }, 1000);
   };
 
   const handlePerfil = () => {
@@ -214,7 +215,7 @@ export default function Navbar({ setMode }) {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ bgcolor: "#ffc400", color:"black" }}>
+      <AppBar position="fixed" sx={{ bgcolor: "#ffc400", color: "black" }}>
         <Toolbar>
           {autenticacion ? (
             <>
@@ -257,7 +258,17 @@ export default function Navbar({ setMode }) {
               <Button
                 variant="contained"
                 color="error"
-                sx={{ ml: "1%", border: "1px solid black", borderRadius: "10px", fontSize: {xs:"0.5rem", sm:"0.7rem" , md:"0.9rem", lg:"0.9rem"} }}
+                sx={{
+                  ml: "1%",
+                  border: "1px solid black",
+                  borderRadius: "10px",
+                  fontSize: {
+                    xs: "0.5rem",
+                    sm: "0.7rem",
+                    md: "0.9rem",
+                    lg: "0.9rem",
+                  },
+                }}
                 onClick={handleLogout}
               >
                 Cerrar Sesión

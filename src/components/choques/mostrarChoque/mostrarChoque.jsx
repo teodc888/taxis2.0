@@ -18,7 +18,6 @@ export default function MostrarChoques() {
 
   const choques = useSelector((state) => state.choques);
 
-  console.log(choques);
 
   useEffect(() => {
     if (autenticacion === true) {
@@ -36,7 +35,7 @@ export default function MostrarChoques() {
         >
           {choques &&
             choques.map((choques) => (
-              <Grid item xs={4} sm={8} md={16} lg={16} key={choques.id}>
+              <Grid item xs={4} sm={8} md={8} lg={8} key={choques.id}>
                 <CardTaxi
                   dia={choques.dia}
                   nombre={choques.nombre}
@@ -47,7 +46,7 @@ export default function MostrarChoques() {
                   poliza={choques.poliza}
                   seguro={choques.seguro}
                   placa={choques.placa}
-                  fotos={choques.fotos}
+                  imagenes={choques.imagenes}
                   tipo="choque"
                   chofer={choques.chofer}
                 />

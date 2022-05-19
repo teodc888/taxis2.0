@@ -24,7 +24,6 @@ export default function MostrarChofer() {
     }
   }, [dispatch, autenticacion, usuario]);
 
-  console.log(choferes);
 
   return (
     <>

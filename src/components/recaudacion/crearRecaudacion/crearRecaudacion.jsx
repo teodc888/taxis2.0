@@ -76,7 +76,7 @@ export default function CrearRecaudacion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(
+      await addDoc(
         collection(db, `${usuario.email} recaudacion`),
         input
       );
@@ -87,7 +87,6 @@ export default function CrearRecaudacion() {
         timer: 2500,
         width: "auto",
       });
-      console.log(docRef);
       setInput({
         dia: fecha,
         total: "",

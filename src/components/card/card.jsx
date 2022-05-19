@@ -10,6 +10,9 @@ import {
   Avatar,
 } from "@mui/material";
 
+//components
+import Carrousel from "../carrouselCard/carrouselCard";
+
 export default function CardTaxi({
   imagen,
   nombre,
@@ -25,14 +28,14 @@ export default function CardTaxi({
   kilometros,
   gastoExtra,
   dni,
-  fotos,
   marca,
   placa,
   poliza,
   seguro,
   chofer,
   turno,
-  fechaDeNacimiento
+  fechaDeNacimiento,
+  imagenes,
 }) {
   return (
     <>
@@ -114,16 +117,7 @@ export default function CardTaxi({
               }
               title={chofer}
             />
-            <CardMedia
-              component="img"
-              height="240"
-              image={
-                fotos
-                  ? fotos
-                  : "https://us.123rf.com/450wm/topvectors/topvectors1903/topvectors190300825/118744560-ilustraci%C3%B3n-de-vector-de-riesgo-de-accidente-y-seguro-de-coche.jpg?ver=6"
-              }
-              alt="green iguana"
-            />
+            <Carrousel imagen={imagenes} velocidad={null} />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Dia {dia}

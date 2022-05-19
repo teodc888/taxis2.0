@@ -17,7 +17,6 @@ import { useSelector } from "react-redux";
 export default function Perfil() {
 
   const usuario = useSelector((state) => state.usuario);
-  console.log(usuario);
 
   return (
     <Stack

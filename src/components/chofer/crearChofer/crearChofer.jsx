@@ -86,10 +86,7 @@ export default function CrearChofer() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const docRef = await addDoc(
-        collection(db, `${usuario.email} chofer`),
-        input
-      );
+      await addDoc(collection(db, `${usuario.email} chofer`), input);
       Swal.fire({
         text: "se Agrego el chofer con exito",
         confirmButtonText: "Ok",
@@ -97,7 +94,6 @@ export default function CrearChofer() {
         timer: 2500,
         width: "auto",
       });
-      console.log(docRef);
       setInput({
         nombre: "",
         apellido: "",
