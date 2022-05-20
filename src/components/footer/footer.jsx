@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container, Grid, Box, Link, Typography } from "@mui/material";
+import { Grid, Box, Link, Typography } from "@mui/material";
 
 
 //Fab
@@ -9,12 +9,11 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import ShareIcon from "@mui/icons-material/Share";
-import LaptopChromebookIcon from "@mui/icons-material/LaptopChromebook";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
-import ApartmentIcon from "@mui/icons-material/Apartment";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
-import CodeIcon from "@mui/icons-material/Code";
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+
 
 
 //Prueba
@@ -37,20 +36,19 @@ export default function Footer() {
         color="white"
         sx={{ marginTop: "5%", bgcolor: "#ffc400", color:"black" }}
       >
-        <Container maxWidth="lg">
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1} textAlign="center">
-                <ApartmentIcon sx={{color:"#4fc3f7"}} /> Importadora
+                <DirectionsCarIcon sx={{color:"#4fc3f7"}} /> TAXIS
               </Box>
               <Box>
-                <Link href="/nosotros" color="inherit">
+                <Link href="/" color="inherit">
                   <AccessibilityNewIcon sx={{color:"#4fc3f7"}} /> Nosotros
                 </Link>
               </Box>
               <Box>
-                <Link href="/log-in" color="inherit">
-                  <AccountCircleIcon sx={{color:"#4fc3f7"}} /> Login
+                <Link href="/" color="inherit">
+                  <AccountCircleIcon sx={{color:"#4fc3f7"}} /> cerrar sesion
                 </Link>
               </Box>
               <Box onClick={handleClickReset}>
@@ -59,28 +57,7 @@ export default function Footer() {
                 </Link>
               </Box>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1} textAlign="center">
-                <LaptopChromebookIcon sx={{color:"#4caf50"}} /> Desarrolladores
-              </Box>
-              <Box>
-                <Link
-                  href="https://www.linkedin.com/in/santiagoclemenzi-fullstack/"
-                  color="inherit"
-                >
-                  <CodeIcon sx={{color:"#4caf50"}} /> Santiago Clemenzi
-                </Link>
-                <Box>
-                  <Link
-                    href="https://www.linkedin.com/in/mateo-dellacqua-castro/"
-                    color="inherit"
-                  >
-                    <CodeIcon sx={{color:"#4caf50"}} /> Mateo Dell'Acqua
-                  </Link>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1} textAlign="center">
                 <ShareIcon sx={{color:"white"}} /> Redes
               </Box>
@@ -141,20 +118,14 @@ export default function Footer() {
             pb={{ xs: 5, sm: 0 }}
             sx={{ display: "flex", justifyContent: "center" }}
           >
-            {/* <Avatar
-              src={NuevosRumbos}
-              sx={{ position: "static", mr: "1.5%" }}
-              alt="Importadora"
-            /> */}
             <Typography
               variant="h6"
               color="textPrimary"
               sx={{ mt: "0.5%", color: "white" }}
             >
-             TAXIS CASTROS &reg; {new Date().getFullYear()}
+             CASTROS TAXIS &reg; {new Date().getFullYear()}
             </Typography>
           </Box>
-        </Container>
       </Box>
     </footer>
   );

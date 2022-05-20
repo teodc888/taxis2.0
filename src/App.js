@@ -55,7 +55,7 @@ function App() {
     () =>
       createTheme({
         typography: {
-          fontFamily: `'Poppins', sans-serif `,
+          fontFamily: `'Open Sans', sans-serif `,
           fontSize: 14,
           fontWeightLight: 300,
           fontWeightRegular: 400,

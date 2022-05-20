@@ -40,7 +40,7 @@ export default function CardTaxi({
   return (
     <>
       {tipo === "chofer" ? (
-        <Card sx={{ maxWidth: 400, margin: "auto", borderRadius: "5%" }}>
+        <Card sx={{ maxWidth: 400, margin: "auto", borderRadius: "5%", textTransform: "capitalize" }}>
           <CardMedia
             component="img"
             height="240"
@@ -75,7 +75,7 @@ export default function CardTaxi({
           </CardContent>
         </Card>
       ) : tipo === "recaudacion" ? (
-        <Card sx={{ maxWidth: 400, margin: "auto" }}>
+        <Card sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
@@ -110,7 +110,7 @@ export default function CardTaxi({
         </Card>
       ) : tipo === "choque" ? (
         <>
-          <Card sx={{ maxWidth: 400, margin: "auto" }}>
+          <Card sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }} >
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
