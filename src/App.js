@@ -2,7 +2,6 @@ import "./App.css";
 import * as React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 //react
 import { useEffect, useState } from "react";
 
@@ -42,6 +41,7 @@ import MostrarRecaudacion from "./components/recaudacion/mostrarRecaudacion/most
 import Perfil from "./components/perfil/perfil";
 import CrearChoque from "./components/choques/crearChoque/crearChoque";
 import MostrarChoque from "./components/choques/mostrarChoque/mostrarChoque";
+import Footer from "./components/footer/footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -117,6 +117,7 @@ function App() {
               </>
             )}
           </Routes>
+          <Footer />
         </Container>
       </ThemeProvider>
       <ToastContainer />
