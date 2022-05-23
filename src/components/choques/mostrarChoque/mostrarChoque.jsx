@@ -48,6 +48,9 @@ export default function MostrarChoques() {
                   imagenes={choques.imagenes}
                   tipo="choque"
                   chofer={choques.chofer}
+                  usuario={usuario.email}
+                  variable={"choque"}
+                  id={choques.id}
                 />
               </Grid>
             ))

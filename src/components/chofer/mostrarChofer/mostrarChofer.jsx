@@ -25,7 +25,6 @@ export default function MostrarChofer() {
   }, [dispatch, autenticacion, usuario]);
 
 
-
   return (
     <>
       <Box sx={{ width: "100%", mt: "1%" }}>
@@ -34,7 +33,7 @@ export default function MostrarChofer() {
           spacing={{ xs: 3, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
         >
-          {choferes.length > 0  ? (
+          {choferes.length > 0 ? (
             choferes.map((chofer) => (
               <Grid item xs={4} sm={8} md={8} lg={8} key={chofer.id}>
                 <CardTaxi
@@ -51,6 +50,9 @@ export default function MostrarChofer() {
                   carnet={chofer.carnet}
                   tipo="chofer"
                   fechaDeNacimiento={chofer.fechaDeNacimiento}
+                  usuario={usuario.email}
+                  variable={"chofer"}
+                  id={chofer.id}
                 />
               </Grid>
             ))

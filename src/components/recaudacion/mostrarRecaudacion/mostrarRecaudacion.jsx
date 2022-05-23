@@ -254,6 +254,9 @@ export default function MostrarRecaudacion() {
                   gastoExtra={recaudacion.gastoExtra}
                   chofer={recaudacion.chofer}
                   turno={recaudacion.turno}
+                  usuario={usuario.email}
+                  variable={"recaudacion"}
+                  id={recaudacion.id}
                 />
               </Grid>
             ))}

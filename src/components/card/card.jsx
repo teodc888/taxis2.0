@@ -8,10 +8,18 @@ import {
   Typography,
   CardHeader,
   Avatar,
+  Button,
 } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 
 //components
 import Carrousel from "../carrouselCard/carrouselCard";
+
+import { db } from "../../firebase/firebaseConfig";
+import { doc, deleteDoc } from "firebase/firestore";
+
+//Swal
+import Swal from "sweetalert2";
 
 export default function CardTaxi({
   imagen,
@@ -36,11 +44,45 @@ export default function CardTaxi({
   turno,
   fechaDeNacimiento,
   imagenes,
+  id,
+  usuario,
+  variable,
 }) {
+  const eliminar = async (id) => {
+    await deleteDoc(doc(db, `${usuario} ${variable}`, id));
+    setTimeout(() => {
+      Swal.fire({
+        text: "Se ah eliminado con exito",
+        confirmButtonText: "Ok",
+        icon: "success",
+        timer: 2500,
+        width: "auto",
+      });
+    }, 1800);
+    setTimeout(async () => {
+      window.location.reload();
+    }, 2000);
+  };
+
   return (
     <>
       {tipo === "chofer" ? (
-        <Card sx={{ maxWidth: 400, margin: "auto", borderRadius: "5%", textTransform: "capitalize" }}>
+        <Card
+          sx={{
+            maxWidth: 400,
+            margin: "auto",
+            borderRadius: "5%",
+            textTransform: "capitalize",
+          }}
+        >
+          <Button
+            sx={{ position: "absolute" }}
+            variant="contained"
+            color="error"
+            onClick={() => eliminar(id)}
+          >
+            <ClearIcon />
+          </Button>
           <CardMedia
             component="img"
             height="240"
@@ -75,7 +117,17 @@ export default function CardTaxi({
           </CardContent>
         </Card>
       ) : tipo === "recaudacion" ? (
-        <Card sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}>
+        <Card
+          sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}
+        >
+          <Button
+            sx={{ float: "right" }}
+            variant="contained"
+            color="error"
+            onClick={() => eliminar(id)}
+          >
+            <ClearIcon />
+          </Button>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
@@ -110,14 +162,34 @@ export default function CardTaxi({
         </Card>
       ) : tipo === "choque" ? (
         <>
-          <Card sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }} >
+          <Card
+            sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}
+          >
+            <Button
+              sx={{ float: "right" }}
+              variant="contained"
+              color="error"
+              onClick={() => eliminar(id)}
+            >
+              <ClearIcon />
+            </Button>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
               }
               title={chofer}
             />
-            <Carrousel imagen={imagenes} velocidad={null} />
+            {imagenes.length > 0 ? (
+              <Carrousel imagen={imagenes} velocidad={null} />
+            ) : (
+              <CardMedia
+                component="img"
+                height="240"
+                image={"https://us.123rf.com/450wm/pandavector/pandavector1601/pandavector160100984/51199829-accidente-de-coche-negro-simple-icono-en-el-fondo-blanco-para-el-dise%C3%B1o-web.jpg?ver=6"}
+                alt="usuario"
+                sx={{ objectFit: "contain" }}
+              />
+            )}
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Dia {dia}
