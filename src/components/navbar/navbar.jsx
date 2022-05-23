@@ -1,7 +1,7 @@
 import * as React from "react";
 
 //react
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -182,6 +182,12 @@ export default function Navbar({ setMode }) {
   const autenticacion = useSelector((state) => state.autenticacion);
   const usuario = useSelector((state) => state.usuario);
 
+  useEffect(() => {
+    if (usuario === null) {
+      dispatch(verificarAutenticacion(false));
+    }
+  }, [dispatch, usuario]);
+
   const handleLogout = async () => {
     navigate("/");
     setTimeout(async () => {
@@ -189,11 +195,6 @@ export default function Navbar({ setMode }) {
         await signOut(auth);
         dispatch(verificarAutenticacion(false));
         navigate("/");
-        if (usuario === null) {
-          dispatch(verificarAutenticacion(false));
-          navigate("/");
-          console.log("troleado puto")
-        }
         Swal.fire({
           text: "Sesión cerrada",
           confirmButtonText: "Ok",

@@ -81,8 +81,9 @@ function App() {
       }
     }, 300);
     if (usuario !== null) {
-      dispatch(verificarAutenticacion(true));
-      // console.log("logeado");
+      dispatch(verificarAutenticacion(true))
+    }else{
+      dispatch(verificarAutenticacion(false))
     }
   }, [autenticacion, dispatch, usuario]);
 
