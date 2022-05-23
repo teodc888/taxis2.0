@@ -180,6 +180,7 @@ export default function Navbar({ setMode }) {
   //funcion para cerrar sesion
 
   const autenticacion = useSelector((state) => state.autenticacion);
+  const usuario = useSelector((state) => state.usuario);
 
   const handleLogout = async () => {
     navigate("/");
@@ -187,7 +188,12 @@ export default function Navbar({ setMode }) {
       try {
         await signOut(auth);
         dispatch(verificarAutenticacion(false));
-        console.log("cerrado");
+        navigate("/");
+        if (usuario === null) {
+          dispatch(verificarAutenticacion(false));
+          navigate("/");
+          console.log("troleado puto")
+        }
         Swal.fire({
           text: "Sesión cerrada",
           confirmButtonText: "Ok",
@@ -195,7 +201,6 @@ export default function Navbar({ setMode }) {
           timer: 2500,
           width: "auto",
         });
-        navigate("/");
       } catch (error) {
         console.log(error);
         Swal.fire({
