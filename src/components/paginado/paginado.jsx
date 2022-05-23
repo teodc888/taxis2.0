@@ -21,7 +21,6 @@ export default function Paginado({
   for (let i = 1; i <= Math.ceil(productos / productoPorPagina); i++) {
     pageNumber.push(
       <Pagination.Item
-        style={{ color: "red" }}
         key={i}
         active={i === pageNumber || i === currentPage}
         onClick={() => paginado(i)}

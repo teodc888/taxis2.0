@@ -10,7 +10,8 @@ import {
   MenuItem,
   FormControl,
   Select,
-  CardMedia
+  CardMedia,
+  Button,
 } from "@mui/material";
 
 //Redux
@@ -29,6 +30,9 @@ import { ToastContainer } from "react-toastify";
 //Componentes
 import CardTaxi from "../../card/card";
 import Paginado from "../../paginado/paginado";
+
+//Exel
+import * as XLSX from "xlsx";
 
 export default function MostrarRecaudacion() {
   const dispatch = useDispatch();
@@ -104,6 +108,15 @@ export default function MostrarRecaudacion() {
       total: e.target.value,
     });
   }
+
+  const downloadExcel = (data) => {
+    const worksheet = XLSX.utils.json_to_sheet(data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+    XLSX.writeFile(workbook, "DataSheet.xlsx");
+  };
 
   return (
     <>
@@ -225,6 +238,7 @@ export default function MostrarRecaudacion() {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
+        <Button variant="contained" color="success" onClick={() => downloadExcel(recaudaciones)}>IMPORTAR A EXEL</Button>
         {currentRecaudaciones.length === 0 && (
           <CardMedia
             component="img"
