@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //Mui
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, CardMedia } from "@mui/material";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -18,7 +18,6 @@ export default function MostrarChoques() {
 
   const choques = useSelector((state) => state.choques);
 
-
   useEffect(() => {
     if (autenticacion === true) {
       dispatch(getChoquesFirebase(usuario.email));
@@ -33,7 +32,7 @@ export default function MostrarChoques() {
           spacing={{ xs: 3, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
         >
-          {choques &&
+          {choques.length > 0 ? (
             choques.map((choques) => (
               <Grid item xs={4} sm={8} md={8} lg={8} key={choques.id}>
                 <CardTaxi
@@ -51,7 +50,17 @@ export default function MostrarChoques() {
                   chofer={choques.chofer}
                 />
               </Grid>
-            ))}
+            ))
+          ) : (
+            <CardMedia
+              component="img"
+              height="100%"
+              image={
+                "https://media1.giphy.com/media/grNkIEN4dkiMXFLIE9/giphy.gif?cid=ecf05e47pwghj643aw5toq6k3k7x7nouidthzr35guhmpv84&rid=giphy.gif&ct=s"
+              }
+              alt="loading"
+            />
+          )}
         </Grid>
       </Box>
     </>

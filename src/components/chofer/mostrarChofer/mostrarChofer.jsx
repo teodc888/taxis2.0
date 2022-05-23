@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //Mui
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, CardMedia } from "@mui/material";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -25,6 +25,7 @@ export default function MostrarChofer() {
   }, [dispatch, autenticacion, usuario]);
 
 
+
   return (
     <>
       <Box sx={{ width: "100%", mt: "1%" }}>
@@ -33,7 +34,7 @@ export default function MostrarChofer() {
           spacing={{ xs: 3, md: 6 }}
           columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
         >
-          {choferes &&
+          {choferes.length > 0  ? (
             choferes.map((chofer) => (
               <Grid item xs={4} sm={8} md={8} lg={8} key={chofer.id}>
                 <CardTaxi
@@ -52,7 +53,17 @@ export default function MostrarChofer() {
                   fechaDeNacimiento={chofer.fechaDeNacimiento}
                 />
               </Grid>
-            ))}
+            ))
+          ) : (
+            <CardMedia
+              component="img"
+              height="100%"
+              image={
+                "https://media1.giphy.com/media/grNkIEN4dkiMXFLIE9/giphy.gif?cid=ecf05e47pwghj643aw5toq6k3k7x7nouidthzr35guhmpv84&rid=giphy.gif&ct=s"
+              }
+              alt="loading"
+            />
+          )}
         </Grid>
       </Box>
     </>

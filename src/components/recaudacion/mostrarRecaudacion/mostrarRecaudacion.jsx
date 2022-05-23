@@ -10,6 +10,7 @@ import {
   MenuItem,
   FormControl,
   Select,
+  CardMedia
 } from "@mui/material";
 
 //Redux
@@ -63,7 +64,6 @@ export default function MostrarRecaudacion() {
   const choferes = useSelector((state) => state.choferes);
 
   const [filtro, setFiltro] = useState(filtrado);
-
 
   function handelfiltrarPorNombre(e) {
     e.preventDefault();
@@ -225,6 +225,16 @@ export default function MostrarRecaudacion() {
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
+        {currentRecaudaciones.length === 0 && (
+          <CardMedia
+            component="img"
+            height="100%"
+            image={
+              "https://media1.giphy.com/media/grNkIEN4dkiMXFLIE9/giphy.gif?cid=ecf05e47pwghj643aw5toq6k3k7x7nouidthzr35guhmpv84&rid=giphy.gif&ct=s"
+            }
+            alt="loading"
+          />
+        )}
       </Stack>
       <Box sx={{ width: "100%", mt: "1%" }}>
         <Grid

@@ -81,12 +81,11 @@ function App() {
       }
     }, 300);
     if (usuario !== null) {
-      dispatch(verificarAutenticacion(true))
-    }else{
-      dispatch(verificarAutenticacion(false))
+      dispatch(verificarAutenticacion(true));
+    } else {
+      dispatch(verificarAutenticacion(false));
     }
   }, [autenticacion, dispatch, usuario]);
-
 
   return (
     <div className="App">
@@ -119,8 +118,8 @@ function App() {
               </>
             )}
           </Routes>
-          <Footer />
         </Container>
+        <Footer />
       </ThemeProvider>
       <ToastContainer />
     </div>
