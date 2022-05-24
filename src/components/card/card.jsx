@@ -21,6 +21,14 @@ import { doc, deleteDoc } from "firebase/firestore";
 //Swal
 import Swal from "sweetalert2";
 
+//redux
+import { useDispatch } from "react-redux";
+import {
+  getRecaudacionesFirebase,
+  getChoquesFirebase,
+  getChoferesFirebase
+} from "../../redux/actions/index";
+
 export default function CardTaxi({
   imagen,
   nombre,
@@ -32,6 +40,8 @@ export default function CardTaxi({
   tipo,
   dia,
   total,
+  totalNeto,
+  porcentajeChofer,
   gnc,
   kilometros,
   gastoExtra,
@@ -48,20 +58,24 @@ export default function CardTaxi({
   usuario,
   variable,
 }) {
+  const dispatch = useDispatch();
+
   const eliminar = async (id) => {
     await deleteDoc(doc(db, `${usuario} ${variable}`, id));
+
+    Swal.fire({
+      text: "Se ah eliminado con exito",
+      confirmButtonText: "Ok",
+      icon: "success",
+      timer: 2500,
+      width: "auto",
+    });
+
     setTimeout(() => {
-      Swal.fire({
-        text: "Se ah eliminado con exito",
-        confirmButtonText: "Ok",
-        icon: "success",
-        timer: 2500,
-        width: "auto",
-      });
-    }, 1800);
-    setTimeout(async () => {
-      window.location.reload();
-    }, 2000);
+      dispatch(getRecaudacionesFirebase(usuario));
+      dispatch(getChoquesFirebase(usuario));
+      dispatch(getChoferesFirebase(usuario));
+    }, 100);
   };
 
   return (
@@ -147,16 +161,22 @@ export default function CardTaxi({
               Turno: {turno}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Total: {total}
+              Total Neto: ${totalNeto}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Gnc: {gnc}
+              35% del chofer: ${porcentajeChofer}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Kilometros: {kilometros}
+              Gnc: ${gnc}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Gastos Extra: {gastoExtra}
+              Kilometros: {kilometros} km
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Gastos Extra: ${gastoExtra}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Total Bruto: ${total}
             </Typography>
           </CardContent>
         </Card>
@@ -185,7 +205,9 @@ export default function CardTaxi({
               <CardMedia
                 component="img"
                 height="240"
-                image={"https://us.123rf.com/450wm/pandavector/pandavector1601/pandavector160100984/51199829-accidente-de-coche-negro-simple-icono-en-el-fondo-blanco-para-el-dise%C3%B1o-web.jpg?ver=6"}
+                image={
+                  "https://us.123rf.com/450wm/pandavector/pandavector1601/pandavector160100984/51199829-accidente-de-coche-negro-simple-icono-en-el-fondo-blanco-para-el-dise%C3%B1o-web.jpg?ver=6"
+                }
                 alt="usuario"
                 sx={{ objectFit: "contain" }}
               />

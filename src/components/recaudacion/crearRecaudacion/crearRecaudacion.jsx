@@ -50,12 +50,14 @@ export default function CrearRecaudacion() {
   //cargar recaudaciones
   const [input, setInput] = useState({
     dia: fecha,
-    total: "",
+    totalNeto: "",
+    porcentajeChofer: 0,
     gnc: "",
     kilometros: "",
     gastoExtra: 0,
     chofer: "",
     turno: "",
+    total: 0,
   });
 
   const handleChange = (e) => {
@@ -76,10 +78,7 @@ export default function CrearRecaudacion() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addDoc(
-        collection(db, `${usuario.email} recaudacion`),
-        input
-      );
+      await addDoc(collection(db, `${usuario.email} recaudacion`), input);
       Swal.fire({
         text: "se Agrego el chofer con exito",
         confirmButtonText: "Ok",
@@ -89,12 +88,14 @@ export default function CrearRecaudacion() {
       });
       setInput({
         dia: fecha,
-        total: "",
+        totalNeto: "",
+        porcentajeChofer: 0,
         gnc: "",
         kilometros: "",
         gastoExtra: 0,
         chofer: "",
         turno: "",
+        total: 0,
       });
     } catch (error) {
       console.log(error);
@@ -107,6 +108,36 @@ export default function CrearRecaudacion() {
       });
     }
   };
+
+  useEffect(() => {
+    if (input.totalNeto !== "") {
+      setInput({ ...input, porcentajeChofer: input.totalNeto * 0.35 });
+    }
+  }, [input.totalNeto]);
+
+  useEffect(() => {
+    if (
+      input.totalNeto !== "" &&
+      input.porcentajeChofer !== 0 &&
+      input.gnc !== ""
+    ) {
+      setInput({
+        ...input,
+        total:
+          Number(input.totalNeto) -
+          Number(input.porcentajeChofer) +
+          Number(input.gnc) +
+          Number(input.gastoExtra),
+      });
+    }
+  }, [
+    input.totalNeto,
+    input.porcentajeChofer,
+    input.gnc,
+    input.totalNeto,
+    input.gastoExtra,
+  ]);
+
 
   return (
     <>
@@ -198,12 +229,23 @@ export default function CrearRecaudacion() {
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
                   id="standard-basic"
-                  label="Total"
-                  name="total"
+                  label="Total Neto"
+                  name="totalNeto"
                   onChange={handleChange}
                   fullWidth
                   required
-                  value={input.total}
+                  value={input.totalNeto}
+                  type="number"
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="35 % para el chofer"
+                  name="porcentajeChofer"
+                  fullWidth
+                  disabled
+                  value={input.porcentajeChofer}
                   type="number"
                 />
               </Grid>
@@ -240,6 +282,17 @@ export default function CrearRecaudacion() {
                   fullWidth
                   required
                   value={input.gastoExtra}
+                  type="number"
+                />
+              </Grid>
+              <Grid item xs={4} sm={8} md={16} lg={16}>
+                <TextField
+                  id="standard-basic"
+                  label="Total"
+                  name="total"
+                  fullWidth
+                  disabled
+                  value={input.total}
                   type="number"
                 />
               </Grid>

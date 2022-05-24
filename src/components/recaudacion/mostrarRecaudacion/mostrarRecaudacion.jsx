@@ -264,6 +264,8 @@ export default function MostrarRecaudacion() {
                   dia={recaudacion.dia}
                   gnc={recaudacion.gnc}
                   kilometros={recaudacion.kilometros}
+                  totalNeto={recaudacion.totalNeto}
+                  porcentajeChofer={recaudacion.porcentajeChofer}
                   total={recaudacion.total}
                   gastoExtra={recaudacion.gastoExtra}
                   chofer={recaudacion.chofer}
@@ -271,6 +273,7 @@ export default function MostrarRecaudacion() {
                   usuario={usuario.email}
                   variable={"recaudacion"}
                   id={recaudacion.id}
+
                 />
               </Grid>
             ))}
