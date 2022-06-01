@@ -129,7 +129,7 @@ export default function CrearChofer() {
           <Box sx={{ width: { xs: "90%", sm: "70%", md: "50%", lg: "50%" } }}>
             <Grid
               container
-              spacing={{ xs: 3, md: 6 }}
+              spacing={{ xs: 3, md: 8 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
               <Grid item xs={4} sm={8} md={16} lg={16}>
@@ -141,6 +141,7 @@ export default function CrearChofer() {
                   fullWidth
                   required
                   value={input.nombre}
+                  sx={{ mt: "2%" }}
                 />
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
@@ -156,6 +157,8 @@ export default function CrearChofer() {
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
+                  label="Imagen"
+                  focused
                   type="file"
                   name="images"
                   onChange={handleFiles}

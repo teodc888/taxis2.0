@@ -141,11 +141,11 @@ export default function CrearChoque() {
           <Box sx={{ width: { xs: "90%", sm: "70%", md: "50%", lg: "50%" } }}>
             <Grid
               container
-              spacing={{ xs: 3, md: 6 }}
+              spacing={{ xs: 3, md: 8 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
               <Grid item xs={4} sm={8} md={16} lg={16}>
-                <Box sx={{ minWidth: 120 }}>
+                <Box sx={{ minWidth: 120, mt: "2%" }}>
                   <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">
                       Chofer
@@ -193,6 +193,9 @@ export default function CrearChoque() {
               </Grid>
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <TextField
+                  id="standard-basic"
+                  label="Imagenes"
+                  focused
                   type="file"
                   name="images"
                   onChange={handleFiles}
