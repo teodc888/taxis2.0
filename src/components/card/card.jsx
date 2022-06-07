@@ -9,6 +9,12 @@ import {
   CardHeader,
   Avatar,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -26,8 +32,13 @@ import { useDispatch } from "react-redux";
 import {
   getRecaudacionesFirebase,
   getChoquesFirebase,
-  getChoferesFirebase
+  getChoferesFirebase,
 } from "../../redux/actions/index";
+
+//Pop up
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function CardTaxi({
   imagen,
@@ -60,9 +71,20 @@ export default function CardTaxi({
 }) {
   const dispatch = useDispatch();
 
+  //Pop up
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   const eliminar = async (id) => {
     await deleteDoc(doc(db, `${usuario} ${variable}`, id));
-
+    setOpen(false);
     Swal.fire({
       text: "Se ah eliminado con exito",
       confirmButtonText: "Ok",
@@ -93,10 +115,30 @@ export default function CardTaxi({
             sx={{ position: "absolute" }}
             variant="contained"
             color="error"
-            onClick={() => eliminar(id)}
+            onClick={handleClickOpen}
           >
             <ClearIcon />
           </Button>
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle>
+              {`Estas seguro que quieres eliminar a ${nombre} ${apellido}?`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Si precionas el boton eliminar se eliminara de la base de datos
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => eliminar(id)}>Eliminar</Button>
+              <Button onClick={handleClose}>Cancelar</Button>
+            </DialogActions>
+          </Dialog>
           <CardMedia
             component="img"
             height="240"
@@ -138,10 +180,30 @@ export default function CardTaxi({
             sx={{ float: "right" }}
             variant="contained"
             color="error"
-            onClick={() => eliminar(id)}
+            onClick={handleClickOpen}
           >
             <ClearIcon />
           </Button>
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle>
+              {`Estas seguro que quieres eliminar la recaudacion de ${chofer} del dia ${dia} turno ${turno}?`}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Si precionas el boton eliminar se eliminara de la base de datos
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => eliminar(id)}>Eliminar</Button>
+              <Button onClick={handleClose}>Cancelar</Button>
+            </DialogActions>
+          </Dialog>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
@@ -189,10 +251,31 @@ export default function CardTaxi({
               sx={{ float: "right" }}
               variant="contained"
               color="error"
-              onClick={() => eliminar(id)}
+              onClick={handleClickOpen}
             >
               <ClearIcon />
             </Button>
+            <Dialog
+              open={open}
+              TransitionComponent={Transition}
+              keepMounted
+              onClose={handleClose}
+              aria-describedby="alert-dialog-slide-description"
+            >
+              <DialogTitle>
+                {`Estas seguro que quieres eliminar el choque de ${chofer} del dia ${dia} ?`}
+              </DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-slide-description">
+                  Si precionas el boton eliminar se eliminara de la base de
+                  datos
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={() => eliminar(id)}>Eliminar</Button>
+                <Button onClick={handleClose}>Cancelar</Button>
+              </DialogActions>
+            </Dialog>
             <CardHeader
               avatar={
                 <Avatar sx={{ bgcolor: "yellow" }} aria-label="recipe"></Avatar>
