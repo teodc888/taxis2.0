@@ -250,17 +250,9 @@ export default function Navbar({ setMode }) {
             icon={<Brightness4Icon sx={{ color: "black" }} />}
             checkedIcon={<Brightness4OutlinedIcon sx={{ color: "black" }} />}
             onClick={colorMode.toggleColorMode}
-            sx={{ mr: "1%" }}
           />
           {autenticacion && (
             <>
-              <IconButton
-                color="inherit"
-                aria-label="login"
-                onClick={handlePerfil}
-              >
-                <AccountCircleIcon />
-              </IconButton>
               <Button
                 variant="contained"
                 color="error"

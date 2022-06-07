@@ -12,6 +12,8 @@ import {
   MenuItem,
   FormControl,
   Select,
+  Card,
+  CardMedia,
 } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -126,142 +128,209 @@ export default function CrearChofer() {
           sx={{ mt: "1%" }}
         >
           <Typography variant="h4">CREAR CHOFER</Typography>
-          <Box sx={{ width: { xs: "90%", sm: "70%", md: "50%", lg: "50%" } }}>
+          <Box>
             <Grid
               container
               spacing={{ xs: 3, md: 8 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Nombre"
-                  name="nombre"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.nombre}
-                  sx={{ mt: "2%" }}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Apellido"
-                  name="apellido"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.apellido}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  label="Imagen"
-                  focused
-                  type="file"
-                  name="images"
-                  onChange={handleFiles}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <MobileDatePicker
-                    variant="success"
-                    label="Dia de nacimiento"
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                      setInput({
-                        ...input,
-                        fechaDeNacimiento:
-                          newValue.getDate() +
-                          "/" +
-                          (newValue.getMonth() + 1) +
-                          "/" +
-                          newValue.getFullYear(),
-                      });
-                    }}
-                    renderInput={(params) => (
-                      <TextField sx={{ width: "100%" }} {...params} />
-                    )}
-                  />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Documento"
-                  name="documento"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  type="number"
-                  value={input.documento}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Telefono"
-                  name="telefono"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  type="number"
-                  value={input.telefono}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Carnet de taxi
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={input.carnet}
-                      label="Carnet de taxi"
-                      onChange={handleSelectCarnet}
-                      sx={{ textTransform: "capitalize" }}
-                    >
-                      <MenuItem value="si">Si</MenuItem>
-                      <MenuItem value="no">No</MenuItem>
-                    </Select>
-                  </FormControl>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={8}
+                lg={8}
+                sx={{ mt: { xs: "2%", sm: "0", md: "0", lg: "0" } }}
+              >
+                <Box>
+                  <Grid
+                    container
+                    spacing={{ xs: 3, md: 8 }}
+                    columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+                  >
+                    <Grid item xs={4} sm={8} md={16} lg={16}>
+                      <TextField
+                        label="Imagen"
+                        focused
+                        type="file"
+                        name="images"
+                        onChange={handleFiles}
+                        fullWidth
+                        sx={{ mt: "2%" }}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Nombre"
+                        name="nombre"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.nombre}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Apellido"
+                        name="apellido"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.apellido}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileDatePicker
+                          variant="success"
+                          label="Dia de nacimiento"
+                          value={value}
+                          onChange={(newValue) => {
+                            setValue(newValue);
+                            setInput({
+                              ...input,
+                              fechaDeNacimiento:
+                                newValue.getDate() +
+                                "/" +
+                                (newValue.getMonth() + 1) +
+                                "/" +
+                                newValue.getFullYear(),
+                            });
+                          }}
+                          renderInput={(params) => (
+                            <TextField sx={{ width: "100%" }} {...params} />
+                          )}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Documento"
+                        name="documento"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        type="number"
+                        value={input.documento}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={16} lg={16}>
+                      <TextField
+                        id="standard-basic"
+                        label="Telefono"
+                        name="telefono"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        type="number"
+                        value={input.telefono}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <Box>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">
+                            Carnet de taxi
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={input.carnet}
+                            label="Carnet de taxi"
+                            onChange={handleSelectCarnet}
+                            sx={{ textTransform: "capitalize" }}
+                          >
+                            <MenuItem value="si">Si</MenuItem>
+                            <MenuItem value="no">No</MenuItem>
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileDatePicker
+                          variant="success"
+                          label="Fecha de vencimiento del carnet"
+                          value={value1}
+                          onChange={(newValue) => {
+                            setValue1(newValue);
+                            setInput({
+                              ...input,
+                              fdv:
+                                newValue.getDate() +
+                                "/" +
+                                (newValue.getMonth() + 1) +
+                                "/" +
+                                newValue.getFullYear(),
+                            });
+                          }}
+                          renderInput={(params) => (
+                            <TextField sx={{ width: "100%" }} {...params} />
+                          )}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <MobileDatePicker
-                    variant="success"
-                    label="Fecha de vencimiento del carnet"
-                    value={value1}
-                    onChange={(newValue) => {
-                      setValue1(newValue);
-                      setInput({
-                        ...input,
-                        fdv:
-                          newValue.getDate() +
-                          "/" +
-                          (newValue.getMonth() + 1) +
-                          "/" +
-                          newValue.getFullYear(),
-                      });
-                    }}
-                    renderInput={(params) => (
-                      <TextField sx={{ width: "100%" }} {...params} />
-                    )}
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={8}
+                lg={8}
+                sx={{ mt: { xs: "5%", sm: "0", md: "0", lg: "0" } }}
+              >
+                <Card sx={{ maxWidth: 300, margin: "auto" }}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    sx={{ objectFit: "contain" }}
+                    image={
+                      input.imagen
+                        ? input.imagen
+                        : "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    }
+                    alt="green iguana"
                   />
-                </LocalizationProvider>
+                </Card>
+                <Typography variant="h6">Nombre: {input.nombre}</Typography>
+                <Typography variant="h6">Apellido: {input.apellido}</Typography>
+                <Typography variant="h6">
+                  Fecha de nacimiento: {input.fechaDeNacimiento}
+                </Typography>
+                <Typography variant="h6">
+                  Documento: {input.documento}
+                </Typography>
+                <Typography variant="h6">Telefono: {input.telefono}</Typography>
+                <Typography variant="h6">
+                  Carnet de taxi: {input.carnet === "si" ? "Si" : "No"}
+                </Typography>
+                <Typography variant="h6">
+                  Fecha de vencimiento del carnet: {input.fdv}
+                </Typography>
               </Grid>
             </Grid>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: { xs: "5%", sm: "2%", md: "2%", lg: "2%" },
+              }}
+            >
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+                sx={{ width: { xs: "100%", sm: "50%", md: "30%", lg: "20%" } }}
+              >
+                Crear
+              </Button>
+            </Box>
           </Box>
-          <Button variant="contained" color="success" type="submit">
-            Crear
-          </Button>
         </Stack>
       </form>
     </div>

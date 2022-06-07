@@ -12,6 +12,8 @@ import {
   MenuItem,
   FormControl,
   Select,
+  Card,
+  CardMedia,
 } from "@mui/material";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
@@ -125,7 +127,8 @@ export default function CrearChoque() {
     }
   };
 
-  console.log(input);
+  const choferElegido =
+    choferes && choferes.find((chofer) => chofer.nombre === input.chofer);
 
   return (
     <>
@@ -138,163 +141,250 @@ export default function CrearChoque() {
           sx={{ mt: "1%" }}
         >
           <Typography variant="h4">CREAR CHOQUE</Typography>
-          <Box sx={{ width: { xs: "90%", sm: "70%", md: "50%", lg: "50%" } }}>
+          <Box>
             <Grid
               container
               spacing={{ xs: 3, md: 8 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <Box sx={{ minWidth: 120, mt: "2%" }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">
-                      Chofer
-                    </InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={input.chofer}
-                      label="Chofer"
-                      onChange={handleSelectChofer}
-                    >
-                      {choferes &&
-                        choferes.map((chofer) => (
-                          <MenuItem key={chofer.id} value={chofer.nombre}>
-                            {chofer.nombre}
-                          </MenuItem>
-                        ))}
-                    </Select>
-                  </FormControl>
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={8}
+                lg={8}
+                sx={{ mt: { xs: "2%", sm: "0", md: "0", lg: "0" } }}
+              >
+                <Box>
+                  <Grid
+                    container
+                    spacing={{ xs: 3, md: 8 }}
+                    columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+                  >
+                    <Grid item xs={4} sm={8} md={16} lg={16}>
+                      <Box sx={{ minWidth: 120, mt: "2%" }}>
+                        <FormControl fullWidth>
+                          <InputLabel id="demo-simple-select-label">
+                            Chofer
+                          </InputLabel>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={input.chofer}
+                            label="Chofer"
+                            onChange={handleSelectChofer}
+                          >
+                            {choferes &&
+                              choferes.map((chofer) => (
+                                <MenuItem key={chofer.id} value={chofer.nombre}>
+                                  {chofer.nombre}
+                                </MenuItem>
+                              ))}
+                          </Select>
+                        </FormControl>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Imagenes"
+                        focused
+                        type="file"
+                        name="images"
+                        onChange={handleFiles}
+                        fullWidth
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <MobileDatePicker
+                          variant="success"
+                          label="Dia"
+                          value={value}
+                          onChange={(newValue) => {
+                            setValue(newValue);
+                            setInput({
+                              ...input,
+                              dia:
+                                newValue.getDate() +
+                                "/" +
+                                (newValue.getMonth() + 1) +
+                                "/" +
+                                newValue.getFullYear(),
+                            });
+                          }}
+                          renderInput={(params) => (
+                            <TextField sx={{ width: "100%" }} {...params} />
+                          )}
+                        />
+                      </LocalizationProvider>
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Seguro"
+                        name="seguro"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.seguro}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Poliza"
+                        name="poliza"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.poliza}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Nombre"
+                        name="nombre"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.nombre}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Apellido"
+                        name="apellido"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.apellido}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="DNI"
+                        name="dni"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.dni}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Telefono"
+                        name="telefono"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.telefono}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Placa"
+                        name="placa"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.placa}
+                      />
+                    </Grid>
+                    <Grid item xs={4} sm={8} md={8} lg={8}>
+                      <TextField
+                        id="standard-basic"
+                        label="Marca"
+                        name="marca"
+                        onChange={handleChange}
+                        fullWidth
+                        required
+                        value={input.marca}
+                      />
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <MobileDatePicker
-                    variant="success"
-                    label="Dia"
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                      setInput({
-                        ...input,
-                        dia:
-                          newValue.getDate() +
-                          "/" +
-                          (newValue.getMonth() + 1) +
-                          "/" +
-                          newValue.getFullYear(),
-                      });
-                    }}
-                    renderInput={(params) => (
-                      <TextField sx={{ width: "100%" }} {...params} />
-                    )}
+              <Grid
+                item
+                xs={4}
+                sm={4}
+                md={8}
+                lg={8}
+                sx={{ mt: { xs: "5%", sm: "0", md: "0", lg: "0" } }}
+              >
+                <Card sx={{ maxWidth: 200, margin: "auto" }}>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    sx={{ objectFit: "contain" }}
+                    image={
+                      choferElegido
+                        ? choferElegido.imagen
+                          ? choferElegido.imagen
+                          : "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                        : "https://iconarchive.com/download/i102645/graphicloads/flat-finance/person.ico"
+                    }
+                    alt="green iguana"
                   />
-                </LocalizationProvider>
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Imagenes"
-                  focused
-                  type="file"
-                  name="images"
-                  onChange={handleFiles}
-                  fullWidth
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Seguro"
-                  name="seguro"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.seguro}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Poliza"
-                  name="poliza"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.poliza}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Nombre"
-                  name="nombre"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.nombre}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Apellido"
-                  name="apellido"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.apellido}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="DNI"
-                  name="dni"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.dni}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Telefono"
-                  name="telefono"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.telefono}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Placa"
-                  name="placa"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.placa}
-                />
-              </Grid>
-              <Grid item xs={4} sm={8} md={16} lg={16}>
-                <TextField
-                  id="standard-basic"
-                  label="Marca"
-                  name="marca"
-                  onChange={handleChange}
-                  fullWidth
-                  required
-                  value={input.marca}
-                />
+                </Card>
+                <Typography variant="h6" sx={{ mt: "2%" }}>
+                  Chofer: {choferElegido ? choferElegido.nombre : null}{" "}
+                  {choferElegido ? choferElegido.apellido : null}
+                </Typography>
+                <Box sx={{ width: "100%", mt: "1%" }}>
+                  <Grid
+                    container
+                    spacing={{ xs: 3, md: 6 }}
+                    columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+                  >
+                    {input.imagenes &&
+                      input.imagenes.map((imagen) => (
+                        <Grid item xs={4} sm={8} md={4} lg={4}>
+                          <CardMedia
+                            component="img"
+                            height="150"
+                            sx={{ objectFit: "contain" }}
+                            image={imagen}
+                            alt="green iguana"
+                          />
+                        </Grid>
+                      ))}
+                  </Grid>
+                </Box>
+                <Typography variant="h6" sx={{mt:"50px"}}>Dia: {input.dia}</Typography>
+                <Typography variant="h6">Seguro: {input.seguro}</Typography>
+                <Typography variant="h6">Poliza: {input.poliza}</Typography>
+                <Typography variant="h6">Nombre: {input.nombre}</Typography>
+                <Typography variant="h6">Apellido: {input.apellido}</Typography>
+                <Typography variant="h6">DNI: {input.dni}</Typography>
+                <Typography variant="h6">Telefono: {input.telefono}</Typography>
+                <Typography variant="h6">Placa: {input.placa}</Typography>
+                <Typography variant="h6">Marca: {input.marca}</Typography>
               </Grid>
             </Grid>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                mt: { xs: "5%", sm: "2%", md: "2%", lg: "2%" },
+              }}
+            >
+              <Button
+                variant="contained"
+                color="success"
+                type="submit"
+                sx={{ width: { xs: "100%", sm: "50%", md: "30%", lg: "20%" } }}
+              >
+                Crear
+              </Button>
+            </Box>
           </Box>
-          <Button type="submit" variant="contained" color="success">
-            Crear
-          </Button>
         </Stack>
       </form>
     </>
