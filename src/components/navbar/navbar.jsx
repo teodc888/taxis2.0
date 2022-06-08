@@ -37,7 +37,6 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness4OutlinedIcon from "@mui/icons-material/Brightness4Outlined";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HomeIcon from "@mui/icons-material/Home";
 import LocalTaxiIcon from "@mui/icons-material/LocalTaxi";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
@@ -103,6 +102,7 @@ const menuItems = [
 ];
 
 export default function Navbar({ setMode }) {
+  const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -136,8 +136,6 @@ export default function Navbar({ setMode }) {
   };
 
   const [open, setOpen] = useState(false);
-
-  const classes = useStyles();
 
   const sideList = () => (
     <Box
@@ -213,10 +211,6 @@ export default function Navbar({ setMode }) {
         });
       }
     }, 1000);
-  };
-
-  const handlePerfil = () => {
-    navigate("/perfil");
   };
 
   return (

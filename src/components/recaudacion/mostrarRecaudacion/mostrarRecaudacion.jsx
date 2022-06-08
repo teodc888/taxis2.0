@@ -51,7 +51,7 @@ export default function MostrarRecaudacion() {
 
   // Paginado
   const [currentPage, setCurrentPage] = useState(1);
-  const [productoPorPagina] = useState(6);
+  const [productoPorPagina] = useState(12);
   const indeceDelUltimoProducto = currentPage * productoPorPagina; // 10
   const indiceDelPrimerProducto = indeceDelUltimoProducto - productoPorPagina; // 0
   const currentRecaudaciones = recaudaciones.slice(
@@ -126,119 +126,127 @@ export default function MostrarRecaudacion() {
         justifyContent="center"
         spacing={2}
       >
-        <Typography variant="h4">Recaudaciones</Typography>
-        <Box sx={{ width: "100%", mt: "1%" }}>
-          <Grid
-            container
-            spacing={{ xs: 3, md: 6 }}
-            columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
-          >
-            <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Filtrar por nombre
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={filtro.nombre}
-                    name="nombre"
-                    label="Filtrar por nombre"
-                    onChange={(e) => handelfiltrarPorNombre(e)}
-                    sx={{ textTransform: "capitalize" }}
-                  >
-                    <MenuItem value="todos"> Todos</MenuItem>
-                    {choferes &&
-                      choferes.map((chofer) => (
-                        <MenuItem
-                          key={chofer.id}
-                          value={chofer.nombre}
-                          sx={{ textTransform: "capitalize" }}
-                        >
-                          {chofer.nombre}
-                        </MenuItem>
-                      ))}
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Filtrar por turno
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={filtro.turno}
-                    name="turno"
-                    label="Filtrar por turno"
-                    onChange={(e) => handelfiltrarPorTurno(e)}
-                    sx={{ textTransform: "capitalize" }}
-                  >
-                    <MenuItem value="todos"> Todos</MenuItem>
-                    <MenuItem value="mañana-tarde"> Mañana-Tarde</MenuItem>
-                    <MenuItem value="tarde-noche"> Tarde-Noche</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Filtrar por mayor/menor recaudacion
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={filtro.total}
-                    name="total"
-                    label="Filtrar por mayor/menor recaudacion"
-                    onChange={(e) => handelfiltrarPorRecaudacion(e)}
-                    sx={{ textTransform: "capitalize" }}
-                  >
-                    <MenuItem value="todos"> Todos</MenuItem>
-                    <MenuItem value="mayor"> Mayor</MenuItem>
-                    <MenuItem value="menor"> Menor</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-            <Grid item xs={4} sm={8} md={4} lg={4}>
-              <Box>
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Filtrar por kilometros recorridos
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    value={filtro.kilometros}
-                    name="kilometros"
-                    label=" Filtrar por kilometros recorridos"
-                    onChange={(e) => handelfiltrarPorKilometros(e)}
-                    sx={{ textTransform: "capitalize" }}
-                  >
-                    <MenuItem value="todos"> Todos</MenuItem>
-                    <MenuItem value="mayor"> Mayor</MenuItem>
-                    <MenuItem value="menor"> Menor</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
-            </Grid>
-          </Grid>
-        </Box>
-        <Paginado
-          productoPorPagina={productoPorPagina}
-          productos={recaudaciones.length}
-          paginado={paginado}
-          setCurrentPage={setCurrentPage}
-          currentPage={currentPage}
-        />
-        <Button variant="contained" color="success" onClick={() => downloadExcel(recaudaciones)}>IMPORTAR A EXEL</Button>
+        <Typography variant="h4">RECAUDACIONES</Typography>
+        {currentRecaudaciones.length !== 0 && (
+          <>
+            <Box sx={{ width: "100%", mt: "1%" }}>
+              <Grid
+                container
+                spacing={{ xs: 3, md: 6 }}
+                columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+              >
+                <Grid item xs={4} sm={8} md={4} lg={4}>
+                  <Box>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Filtrar por nombre
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={filtro.nombre}
+                        name="nombre"
+                        label="Filtrar por nombre"
+                        onChange={(e) => handelfiltrarPorNombre(e)}
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        <MenuItem value="todos"> Todos</MenuItem>
+                        {choferes &&
+                          choferes.map((chofer) => (
+                            <MenuItem
+                              key={chofer.id}
+                              value={chofer.nombre}
+                              sx={{ textTransform: "capitalize" }}
+                            >
+                              {chofer.nombre}
+                            </MenuItem>
+                          ))}
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Grid>
+                <Grid item xs={4} sm={8} md={4} lg={4}>
+                  <Box>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Filtrar por turno
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={filtro.turno}
+                        name="turno"
+                        label="Filtrar por turno"
+                        onChange={(e) => handelfiltrarPorTurno(e)}
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        <MenuItem value="todos"> Todos</MenuItem>
+                        <MenuItem value="mañana-tarde"> Mañana-Tarde</MenuItem>
+                        <MenuItem value="tarde-noche"> Tarde-Noche</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Grid>
+                <Grid item xs={4} sm={8} md={4} lg={4}>
+                  <Box>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Filtrar por mayor/menor recaudacion
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={filtro.total}
+                        name="total"
+                        label="Filtrar por mayor/menor recaudacion"
+                        onChange={(e) => handelfiltrarPorRecaudacion(e)}
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        <MenuItem value="todos"> Todos</MenuItem>
+                        <MenuItem value="mayor"> Mayor</MenuItem>
+                        <MenuItem value="menor"> Menor</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Grid>
+                <Grid item xs={4} sm={8} md={4} lg={4}>
+                  <Box>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Filtrar por kilometros recorridos
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={filtro.kilometros}
+                        name="kilometros"
+                        label=" Filtrar por kilometros recorridos"
+                        onChange={(e) => handelfiltrarPorKilometros(e)}
+                        sx={{ textTransform: "capitalize" }}
+                      >
+                        <MenuItem value="todos"> Todos</MenuItem>
+                        <MenuItem value="mayor"> Mayor</MenuItem>
+                        <MenuItem value="menor"> Menor</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
+                </Grid>
+              </Grid>
+            </Box>
+
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => downloadExcel(recaudaciones)}
+              sx={{
+                transition: "all 0.3s ease-in-out",
+                ":hover": { transform: "scale(1.2)" },
+              }}
+            >
+              IMPORTAR A EXEL
+            </Button>
+          </>
+        )}
         {currentRecaudaciones.length === 0 && (
           <CardMedia
             component="img"
@@ -250,7 +258,7 @@ export default function MostrarRecaudacion() {
           />
         )}
       </Stack>
-      <Box sx={{ width: "100%", mt: "1%" }}>
+      <Box sx={{ width: "100%", mt: "5%" }}>
         <Grid
           container
           spacing={{ xs: 3, md: 6 }}
@@ -258,7 +266,7 @@ export default function MostrarRecaudacion() {
         >
           {currentRecaudaciones &&
             currentRecaudaciones.map((recaudacion) => (
-              <Grid item xs={4} sm={8} md={8} lg={8} key={recaudacion.id}>
+              <Grid item xs={4} sm={8} md={4} lg={4} key={recaudacion.id}>
                 <CardTaxi
                   tipo={"recaudacion"}
                   dia={recaudacion.dia}
@@ -273,12 +281,22 @@ export default function MostrarRecaudacion() {
                   usuario={usuario.email}
                   variable={"recaudacion"}
                   id={recaudacion.id}
-
                 />
               </Grid>
             ))}
         </Grid>
       </Box>
+      {currentRecaudaciones.length !== 0 && (
+        <Box sx={{ display: "flex", justifyContent: "center", mt: "5%" }}>
+          <Paginado
+            productoPorPagina={productoPorPagina}
+            productos={recaudaciones.length}
+            paginado={paginado}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </Box>
+      )}
       <ToastContainer />
     </>
   );

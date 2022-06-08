@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //Mui
-import { Grid, Box, CardMedia } from "@mui/material";
+import { Grid, Box, CardMedia, Typography } from "@mui/material";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -24,10 +24,14 @@ export default function MostrarChofer() {
     }
   }, [dispatch, autenticacion, usuario]);
 
-
   return (
     <>
       <Box sx={{ width: "100%", mt: "1%" }}>
+        <Box sx={{textAlign:"center"}}>
+          <Typography variant="h4" gutterBottom sx={{mb:"2%"}}>
+            CHOFERES
+          </Typography>
+        </Box>
         <Grid
           container
           spacing={{ xs: 3, md: 6 }}
@@ -35,7 +39,7 @@ export default function MostrarChofer() {
         >
           {choferes.length > 0 ? (
             choferes.map((chofer) => (
-              <Grid item xs={4} sm={8} md={8} lg={8} key={chofer.id}>
+              <Grid item xs={4} sm={8} md={4} lg={4} key={chofer.id}>
                 <CardTaxi
                   imagen={
                     chofer.imagen

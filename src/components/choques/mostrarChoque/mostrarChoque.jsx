@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 //Mui
-import { Grid, Box, CardMedia } from "@mui/material";
+import { Grid, Box, CardMedia, Typography } from "@mui/material";
 
 //Redux
 import { useSelector, useDispatch } from "react-redux";
@@ -26,7 +26,10 @@ export default function MostrarChoques() {
 
   return (
     <>
-      <Box sx={{ width: "100%", mt: "1%" }}>
+      <Box sx={{textAlign:"center"}}>
+        <Typography variant="h4">CHOQUES</Typography>
+      </Box>
+      <Box sx={{ width: "100%", mt: "3%" }}>
         <Grid
           container
           spacing={{ xs: 3, md: 6 }}
@@ -34,7 +37,7 @@ export default function MostrarChoques() {
         >
           {choques.length > 0 ? (
             choques.map((choques) => (
-              <Grid item xs={4} sm={8} md={8} lg={8} key={choques.id}>
+              <Grid item xs={4} sm={8} md={4} lg={4} key={choques.id}>
                 <CardTaxi
                   dia={choques.dia}
                   nombre={choques.nombre}

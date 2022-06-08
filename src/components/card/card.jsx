@@ -15,6 +15,7 @@ import {
   DialogContentText,
   DialogTitle,
   Slide,
+  Box,
 } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 
@@ -107,12 +108,15 @@ export default function CardTaxi({
           sx={{
             maxWidth: 400,
             margin: "auto",
-            borderRadius: "5%",
             textTransform: "capitalize",
+            transition: "all 0.3s ease-in-out",
+            ":hover": { transform: "scale(1.1)" },
+            borderRadius: "20px",
+            boxShadow: "0px 0px 1 0px #37474f",
           }}
         >
           <Button
-            sx={{ position: "absolute" }}
+            sx={{ position: "absolute", borderRadius: "10px" }}
             variant="contained"
             color="error"
             onClick={handleClickOpen}
@@ -174,7 +178,14 @@ export default function CardTaxi({
         </Card>
       ) : tipo === "recaudacion" ? (
         <Card
-          sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}
+          sx={{
+            maxWidth: 400,
+            margin: "auto",
+            textTransform: "capitalize",
+            transition: "all 0.3s ease-in-out",
+            ":hover": { transform: "scale(1.1)" },
+            borderRadius: "20px",
+          }}
         >
           <Button
             sx={{ float: "right" }}
@@ -212,9 +223,11 @@ export default function CardTaxi({
             title={chofer}
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              {dia}
-            </Typography>
+            <Box sx={{ textAlign: "center" }}>
+              <Typography gutterBottom variant="h4" component="div">
+                {dia}
+              </Typography>
+            </Box>
             <Typography
               variant="body2"
               color="text.secondary"
@@ -245,7 +258,14 @@ export default function CardTaxi({
       ) : tipo === "choque" ? (
         <>
           <Card
-            sx={{ maxWidth: 400, margin: "auto", textTransform: "capitalize" }}
+            sx={{
+              maxWidth: 400,
+              margin: "auto",
+              textTransform: "capitalize",
+              transition: "all 0.3s ease-in-out",
+              ":hover": { transform: "scale(1.1)" },
+              borderRadius: "20px",
+            }}
           >
             <Button
               sx={{ float: "right" }}
@@ -300,7 +320,7 @@ export default function CardTaxi({
                 Dia {dia}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {nombre} {apellido}
+                Nombre: {nombre} {apellido}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 Documento: {dni}

@@ -142,11 +142,12 @@ export default function CrearChofer() {
                 lg={8}
                 sx={{ mt: { xs: "2%", sm: "0", md: "0", lg: "0" } }}
               >
-                <Box>
+                <Box >
                   <Grid
                     container
                     spacing={{ xs: 3, md: 8 }}
                     columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+                    
                   >
                     <Grid item xs={4} sm={8} md={16} lg={16}>
                       <TextField
@@ -297,7 +298,7 @@ export default function CrearChofer() {
                     alt="green iguana"
                   />
                 </Card>
-                <Typography variant="h6">Nombre: {input.nombre}</Typography>
+                <Typography variant="h6" sx={{mt:"2%"}}>Nombre: {input.nombre}</Typography>
                 <Typography variant="h6">Apellido: {input.apellido}</Typography>
                 <Typography variant="h6">
                   Fecha de nacimiento: {input.fechaDeNacimiento}

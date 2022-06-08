@@ -16,7 +16,7 @@ export default function Carrousel({ imagen, velocidad }) {
           <Carousel.Item  >
             <img
               className="d-block w-100"
-              height={"100%"}
+              height={230}
               src={picture}
               alt="Not fount"
               style={{objectFit: "contain"}}
