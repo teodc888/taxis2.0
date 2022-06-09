@@ -26,7 +26,7 @@ export default function MostrarChoques() {
 
   return (
     <>
-      <Box sx={{textAlign:"center"}}>
+      <Box sx={{ textAlign: "center" }}>
         <Typography variant="h4">CHOQUES</Typography>
       </Box>
       <Box sx={{ width: "100%", mt: "3%" }}>
@@ -36,24 +36,24 @@ export default function MostrarChoques() {
           columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
         >
           {choques.length > 0 ? (
-            choques.map((choques) => (
-              <Grid item xs={4} sm={8} md={4} lg={4} key={choques.id}>
+            choques.map((choque) => (
+              <Grid item xs={4} sm={8} md={4} lg={4} key={choque.id} sx={{margin:"auto"}}>
                 <CardTaxi
-                  dia={choques.dia}
-                  nombre={choques.nombre}
-                  apellido={choques.apellido}
-                  dni={choques.dni}
-                  marca={choques.marca}
-                  telefono={choques.telefono}
-                  poliza={choques.poliza}
-                  seguro={choques.seguro}
-                  placa={choques.placa}
-                  imagenes={choques.imagenes}
+                  dia={choque.dia}
+                  nombre={choque.nombre}
+                  apellido={choque.apellido}
+                  dni={choque.dni}
+                  marca={choque.marca}
+                  telefono={choque.telefono}
+                  poliza={choque.poliza}
+                  seguro={choque.seguro}
+                  placa={choque.placa}
+                  imagenes={choque.imagenes}
                   tipo="choque"
-                  chofer={choques.chofer}
+                  chofer={choque.chofer}
                   usuario={usuario.email}
                   variable={"choque"}
-                  id={choques.id}
+                  id={choque.id}
                 />
               </Grid>
             ))

@@ -27,8 +27,8 @@ export default function MostrarChofer() {
   return (
     <>
       <Box sx={{ width: "100%", mt: "1%" }}>
-        <Box sx={{textAlign:"center"}}>
-          <Typography variant="h4" gutterBottom sx={{mb:"2%"}}>
+        <Box sx={{ textAlign: "center" }}>
+          <Typography variant="h4" gutterBottom sx={{ mb: "2%" }}>
             CHOFERES
           </Typography>
         </Box>
@@ -39,7 +39,15 @@ export default function MostrarChofer() {
         >
           {choferes.length > 0 ? (
             choferes.map((chofer) => (
-              <Grid item xs={4} sm={8} md={4} lg={4} key={chofer.id}>
+              <Grid
+                item
+                xs={4}
+                sm={8}
+                md={4}
+                lg={4}
+                key={chofer.id}
+                sx={{ margin: "auto" }}
+              >
                 <CardTaxi
                   imagen={
                     chofer.imagen

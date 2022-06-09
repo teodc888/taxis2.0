@@ -266,7 +266,15 @@ export default function MostrarRecaudacion() {
         >
           {currentRecaudaciones &&
             currentRecaudaciones.map((recaudacion) => (
-              <Grid item xs={4} sm={8} md={4} lg={4} key={recaudacion.id}>
+              <Grid
+                item
+                xs={4}
+                sm={8}
+                md={4}
+                lg={4}
+                key={recaudacion.id}
+                sx={{ margin: "auto" }}
+              >
                 <CardTaxi
                   tipo={"recaudacion"}
                   dia={recaudacion.dia}
