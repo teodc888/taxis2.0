@@ -41,6 +41,8 @@ import Perfil from "./components/perfil/perfil";
 import CrearChoque from "./components/choques/crearChoque/crearChoque";
 import MostrarChoque from "./components/choques/mostrarChoque/mostrarChoque";
 import Footer from "./components/footer/footer";
+import EditarChofer from "./components/chofer/editarChofer/editarChofer";
+import EditarRecaudacion from "./components/recaudacion/editarRecaudacion/editarRecaudacion";
 
 function App() {
   const dispatch = useDispatch();
@@ -114,6 +116,11 @@ function App() {
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/crearChoque" element={<CrearChoque />} />
                 <Route path="/mostrarChoque" element={<MostrarChoque />} />
+                <Route path="/editarChofer/:id" element={<EditarChofer />} />
+                <Route
+                  path="/editarRecaudacion/:id"
+                  element={<EditarRecaudacion />}
+                />
               </>
             )}
           </Routes>

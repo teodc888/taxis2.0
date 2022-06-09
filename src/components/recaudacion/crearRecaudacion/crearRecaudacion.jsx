@@ -130,6 +130,7 @@ export default function CrearRecaudacion() {
           (Number(input.porcentajeChofer) +
             Number(input.gnc) +
             Number(input.gastoExtra)),
+        porcentajeChofer: input.totalNeto * 0.35,
       });
     }
   }, [

@@ -36,6 +36,9 @@ import {
   getChoferesFirebase,
 } from "../../redux/actions/index";
 
+//Router
+import { useNavigate } from "react-router";
+
 //Pop up
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -71,6 +74,7 @@ export default function CardTaxi({
   variable,
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //Pop up
   const [open, setOpen] = React.useState(false);
@@ -99,6 +103,14 @@ export default function CardTaxi({
       dispatch(getChoquesFirebase(usuario));
       dispatch(getChoferesFirebase(usuario));
     }, 100);
+  };
+
+  const handleEditarChofer = () => {
+    navigate(`/editarChofer/${id}`);
+  };
+
+  const handleEditarRecaudacion = () => {
+    navigate(`/editarRecaudacion/${id}`);
   };
 
   return (
@@ -174,6 +186,14 @@ export default function CardTaxi({
             <Typography variant="body2" color="text.secondary">
               Fecha de vencimiento {fdv}
             </Typography>
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ mt: "5%" }}
+              onClick={handleEditarChofer}
+            >
+              Editar Chofer
+            </Button>
           </CardContent>
         </Card>
       ) : tipo === "recaudacion" ? (
@@ -253,6 +273,14 @@ export default function CardTaxi({
             <Typography variant="body2" color="text.secondary">
               Total Bruto: ${total}
             </Typography>
+            <Button
+              variant="contained"
+              color="success"
+              sx={{ mt: "5%" }}
+              onClick={handleEditarRecaudacion}
+            >
+              Editar Recaudacion
+            </Button>
           </CardContent>
         </Card>
       ) : tipo === "choque" ? (
