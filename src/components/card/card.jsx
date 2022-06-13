@@ -113,6 +113,10 @@ export default function CardTaxi({
     navigate(`/editarRecaudacion/${id}`);
   };
 
+  const handleEditarChoque = () => {
+    navigate(`/editarChoque/${id}`);
+  };
+
   return (
     <>
       {tipo === "chofer" ? (
@@ -368,6 +372,14 @@ export default function CardTaxi({
               <Typography variant="body2" color="text.secondary">
                 Placa: {placa}
               </Typography>
+              <Button
+                variant="contained"
+                color="success"
+                sx={{ mt: "5%" }}
+                onClick={handleEditarChoque}
+              >
+                Editar Choque
+              </Button>
             </CardContent>
           </Card>
         </>

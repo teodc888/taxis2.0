@@ -43,6 +43,7 @@ import MostrarChoque from "./components/choques/mostrarChoque/mostrarChoque";
 import Footer from "./components/footer/footer";
 import EditarChofer from "./components/chofer/editarChofer/editarChofer";
 import EditarRecaudacion from "./components/recaudacion/editarRecaudacion/editarRecaudacion";
+import EditarChoque from "./components/choques/editarChoque/editarChoque";
 
 function App() {
   const dispatch = useDispatch();
@@ -121,6 +122,7 @@ function App() {
                   path="/editarRecaudacion/:id"
                   element={<EditarRecaudacion />}
                 />
+                <Route path="/editarChoque/:id" element={<EditarChoque />} />
               </>
             )}
           </Routes>
