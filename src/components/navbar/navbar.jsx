@@ -188,29 +188,27 @@ export default function Navbar({ setMode }) {
 
   const handleLogout = async () => {
     navigate("/");
-    setTimeout(async () => {
-      try {
-        await signOut(auth);
-        dispatch(verificarAutenticacion(false));
-        navigate("/");
-        Swal.fire({
-          text: "Sesión cerrada",
-          confirmButtonText: "Ok",
-          icon: "success",
-          timer: 2500,
-          width: "auto",
-        });
-      } catch (error) {
-        console.log(error);
-        Swal.fire({
-          text: "NO se pudo cerrar la sesion",
-          confirmButtonText: "Ok",
-          icon: "error",
-          timer: 2500,
-          width: "auto",
-        });
-      }
-    }, 1000);
+    try {
+      await signOut(auth);
+      dispatch(verificarAutenticacion(false));
+      navigate("/");
+      Swal.fire({
+        text: "Sesión cerrada",
+        confirmButtonText: "Ok",
+        icon: "success",
+        timer: 2500,
+        width: "auto",
+      });
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        text: "NO se pudo cerrar la sesion",
+        confirmButtonText: "Ok",
+        icon: "error",
+        timer: 2500,
+        width: "auto",
+      });
+    }
   };
 
   return (

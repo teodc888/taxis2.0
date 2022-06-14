@@ -24,25 +24,27 @@ export default function Home() {
     navigate("/mostrarChofer");
   };
 
-
   const handleChoque = () => {
     navigate("/mostrarChoque");
   };
-
 
   return (
     <div>
       <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
         <Card sx={{ maxWidth: "100%", mt: "1%" }}>
           <CardMedia
-            sx={{ display: { xs: "none", sm:"block" ,md: "block", lg:"block" } }}
+            sx={{
+              display: { xs: "none", sm: "block", md: "block", lg: "block" },
+            }}
             component="img"
             height="100%"
             image={Portada}
             alt="green iguana"
           />
           <CardMedia
-            sx={{ display: { xs: "block",sm:"none", md: "none", lg:"none" } }}
+            sx={{
+              display: { xs: "block", sm: "none", md: "none", lg: "none" },
+            }}
             component="img"
             height="100%"
             image={Portada1}
