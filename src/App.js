@@ -15,10 +15,12 @@ import {
   darkModee,
   verificarAutenticacion,
   getUsuario,
+  getChoferesFirebase,
 } from "./redux/actions/index";
 
 //Route
 import { Routes, Route } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 //firebase
 import { auth } from "./firebase/firebaseConfig";
@@ -27,6 +29,9 @@ import { onAuthStateChanged } from "firebase/auth";
 
 //Tost
 import { ToastContainer } from "react-toastify";
+
+//Swal
+import Swal from "sweetalert2";
 
 //Components
 import Navbar from "./components/navbar/navbar";
@@ -47,6 +52,7 @@ import EditarChoque from "./components/choques/editarChoque/editarChoque";
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //modo dark
   const modo = useSelector((state) => state.darkMode);
@@ -71,8 +77,12 @@ function App() {
   );
 
   //user
+
+  const [cargando, setCargando] = useState(false);
+
   const autenticacion = useSelector((state) => state.autenticacion);
   const usuario = useSelector((state) => state.usuario);
+  const choferes = useSelector((state) => state.choferes);
 
   useEffect(() => {
     setTimeout(() => {
@@ -82,55 +92,85 @@ function App() {
         });
       }
     }, 300);
+    if (autenticacion === true) {
+      dispatch(getChoferesFirebase(usuario !== null ? usuario.email : null));
+      if (usuario !== null) {
+        setTimeout(() => {
+          setCargando(true);
+        }, 2500);
+      }
+    }
     if (usuario !== null) {
       dispatch(verificarAutenticacion(true));
     } else {
       dispatch(verificarAutenticacion(false));
+      setCargando(false);
     }
   }, [autenticacion, dispatch, usuario]);
 
+  useEffect(() => {
+    if (autenticacion === true) {
+      if (cargando === true) {
+        if (usuario !== null) {
+          if (choferes.length === 0) {
+            navigate("/crearChofer");
+            Swal.fire({
+              text: "Tienes que crear un chofer para comenzar a utilizar esta app",
+              confirmButtonText: "Ok",
+              icon: "success",
+              timer: 6000,
+              width: "auto",
+            });
+          }
+        }
+      }
+    }
+  }, [choferes.length, dispatch, autenticacion, usuario, navigate, cargando]);
+
   return (
-    <div className="App">
+    <>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Navbar setMode={setMode} />
-        <Container maxWidth="xl">
-          <Routes>
-            {autenticacion === false ? (
-              <>
-                <Route path="/" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-              </>
-            ) : (
-              <>
-                <Route path="/" element={<Home />} />
-                <Route path="/crearChofer" element={<CrearChofer />} />
-                <Route path="/mostrarChofer" element={<MostrarChofer />} />
-                <Route
-                  path="/crearRecaudacion"
-                  element={<CrearRecaudacion />}
-                />
-                <Route
-                  path="/mostrarRecaudacion"
-                  element={<MostrarRecaudacion />}
-                />
-                <Route path="/perfil" element={<Perfil />} />
-                <Route path="/crearChoque" element={<CrearChoque />} />
-                <Route path="/mostrarChoque" element={<MostrarChoque />} />
-                <Route path="/editarChofer/:id" element={<EditarChofer />} />
-                <Route
-                  path="/editarRecaudacion/:id"
-                  element={<EditarRecaudacion />}
-                />
-                <Route path="/editarChoque/:id" element={<EditarChoque />} />
-              </>
-            )}
-          </Routes>
-        </Container>
-        <Footer />
+        <div className="App">
+          <Navbar setMode={setMode} setCargando={setCargando} />
+          <Container maxWidth="xl">
+            <Routes>
+              {autenticacion === false ? (
+                <>
+                  <Route path="/" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                </>
+              ) : (
+                <>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/crearChofer" element={<CrearChofer />} />
+                  <Route path="/mostrarChofer" element={<MostrarChofer />} />
+                  <Route
+                    path="/crearRecaudacion"
+                    element={<CrearRecaudacion />}
+                  />
+                  <Route
+                    path="/mostrarRecaudacion"
+                    element={<MostrarRecaudacion />}
+                  />
+                  <Route path="/perfil" element={<Perfil />} />
+                  <Route path="/crearChoque" element={<CrearChoque />} />
+                  <Route path="/mostrarChoque" element={<MostrarChoque />} />
+                  <Route path="/editarChofer/:id" element={<EditarChofer />} />
+                  <Route
+                    path="/editarRecaudacion/:id"
+                    element={<EditarRecaudacion />}
+                  />
+                  <Route path="/editarChoque/:id" element={<EditarChoque />} />
+                </>
+              )}
+            </Routes>
+          </Container>
+          <Footer />
+        </div>
       </ThemeProvider>
       <ToastContainer />
-    </div>
+    </>
   );
 }
 

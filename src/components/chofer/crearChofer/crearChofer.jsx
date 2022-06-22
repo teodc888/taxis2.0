@@ -24,12 +24,14 @@ import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../../firebase/firebaseConfig";
 
 //Redux
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {getChoferesFirebase} from "../../../redux/actions/index"
 
 //Swal
 import Swal from "sweetalert2";
 
 export default function CrearChofer() {
+  const dispatch = useDispatch()
   const [value, setValue] = useState(new Date());
   const [value1, setValue1] = useState(new Date());
 
@@ -85,6 +87,7 @@ export default function CrearChofer() {
 
   const usuario = useSelector((state) => state.usuario);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -105,6 +108,7 @@ export default function CrearChofer() {
         carnet: "si",
         fdv: fechaDV,
       });
+      dispatch(getChoferesFirebase(usuario !== null ? usuario.email : null));
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -142,12 +146,11 @@ export default function CrearChofer() {
                 lg={8}
                 sx={{ mt: { xs: "2%", sm: "0", md: "0", lg: "0" } }}
               >
-                <Box >
+                <Box>
                   <Grid
                     container
                     spacing={{ xs: 3, md: 8 }}
                     columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
-                    
                   >
                     <Grid item xs={4} sm={8} md={16} lg={16}>
                       <TextField
@@ -298,7 +301,9 @@ export default function CrearChofer() {
                     alt="green iguana"
                   />
                 </Card>
-                <Typography variant="h6" sx={{mt:"2%"}}>Nombre: {input.nombre}</Typography>
+                <Typography variant="h6" sx={{ mt: "2%" }}>
+                  Nombre: {input.nombre}
+                </Typography>
                 <Typography variant="h6">Apellido: {input.apellido}</Typography>
                 <Typography variant="h6">
                   Fecha de nacimiento: {input.fechaDeNacimiento}

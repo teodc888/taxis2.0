@@ -101,7 +101,7 @@ const menuItems = [
   },
 ];
 
-export default function Navbar({ setMode }) {
+export default function Navbar({ setMode, setCargando }) {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -187,11 +187,13 @@ export default function Navbar({ setMode }) {
   }, [dispatch, usuario]);
 
   const handleLogout = async () => {
+    setCargando(false);
+    dispatch(verificarAutenticacion(false));
     navigate("/");
     try {
       await signOut(auth);
-      dispatch(verificarAutenticacion(false));
       navigate("/");
+      dispatch(verificarAutenticacion(false));
       Swal.fire({
         text: "Sesión cerrada",
         confirmButtonText: "Ok",
@@ -199,6 +201,9 @@ export default function Navbar({ setMode }) {
         timer: 2500,
         width: "auto",
       });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } catch (error) {
       console.log(error);
       Swal.fire({

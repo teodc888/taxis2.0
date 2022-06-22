@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import {
-  CardActionArea,
   Card,
   CardContent,
   CardMedia,
@@ -72,6 +71,8 @@ export default function CardTaxi({
   id,
   usuario,
   variable,
+  titulo,
+  numero
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -385,22 +386,15 @@ export default function CardTaxi({
         </>
       ) : (
         <Card sx={{ maxWidth: 400, margin: "auto" }}>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              height="200"
-              image="https://es.seaicons.com/wp-content/uploads/2015/06/Bar-chart-icon.png"
-              alt="green iguana"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Graficos
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                numero
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <CardContent>
+            <Typography variant="body2" component="div" color="text.secondary">
+              {titulo}
+            </Typography>
+            <Typography variant="h5">{numero}</Typography>
+            <Typography variant="body2" component="div" color="text.secondary">
+              cantidad de {titulo}
+            </Typography>
+          </CardContent>
         </Card>
       )}
     </>
