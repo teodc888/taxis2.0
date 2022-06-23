@@ -9,6 +9,7 @@ import {
   Grid,
   Box,
   Typography,
+  Container,
 } from "@mui/material";
 
 //router
@@ -65,11 +66,6 @@ export default function Home() {
     }
   }, [dispatch, autenticacion, usuario]);
 
-  const filtradoTotal =
-    recaudaciones.length > 0 ? recaudaciones.map((total) => total.total) : 0;
-  const reducer = (accumulator, curr) => accumulator + curr;
-  const total = filtradoTotal.length > 0 ? filtradoTotal.reduce(reducer) : 0;
-
   return (
     <div>
       <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
@@ -93,174 +89,184 @@ export default function Home() {
             alt="green iguana"
           />
         </Card>
-
-        <Box sx={{ width: "100%", mt: "1%" }}>
-          <Box sx={{ textAlign: "center", mb: "2%" }}>
-            <Typography variant="h4" component={"div"}>
-              TAXIS
-            </Typography>
+        <Container maxWidth="L">
+          <Box sx={{ width: "100%", mt: "1%" }}>
+            <Box sx={{ textAlign: "center", mb: "2%" }}>
+              <Typography variant="h4" component={"div"}>
+                TAXIS
+              </Typography>
+            </Box>
+            <Grid
+              container
+              spacing={{ xs: 3, md: 6 }}
+              columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+            >
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "black",
+                    color: "white",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleRecaudacion("mostrar")}
+                >
+                  Mostrar Recaudaciones
+                </Button>
+              </Grid>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="inherit"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "#ffc400",
+                    color: "black",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleRecaudacion("crear")}
+                >
+                  Cargar Recaudaciones
+                </Button>
+              </Grid>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="inherit"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "#ffc400",
+                    color: "black",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleChoferes("mostrar")}
+                >
+                  Mostrar Choferes
+                </Button>
+              </Grid>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "black",
+                    color: "white",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleChoferes("crear")}
+                >
+                  Cargar Choferes
+                </Button>
+              </Grid>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="warning"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "black",
+                    color: "white",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleChoque("mostrar")}
+                >
+                  Mostrar Choques
+                </Button>
+              </Grid>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
+                <Button
+                  variant="contained"
+                  color="inherit"
+                  sx={{
+                    width: "100%",
+                    height: "50px",
+                    bgcolor: "#ffc400",
+                    color: "black",
+                    fontSize: {
+                      xs: "10px",
+                      sm: "13px",
+                      md: "15px",
+                      lg: "15px",
+                    },
+                  }}
+                  onClick={() => handleChoque("crear")}
+                >
+                  Cargar Choques
+                </Button>
+              </Grid>
+            </Grid>
           </Box>
-          <Grid
-            container
-            spacing={{ xs: 3, md: 6 }}
-            columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
-          >
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="error"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleRecaudacion("mostrar")}
-              >
-                Mostrar Recaudaciones
-              </Button>
+          <Box sx={{ width: "100%" }}>
+            <Box sx={{ textAlign: "center", mt: "2%", mb: "2%" }}>
+              <Typography variant="h4" component={"div"}>
+                Graficos
+              </Typography>
+            </Box>
+            <Grid
+              container
+              spacing={{ xs: 3, md: 6 }}
+              columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
+            >
+              <Grid item xs={4} sm={4} md={5.33} lg={5.33}>
+                <CardTaxi
+                  numero={choferes.length}
+                  titulo="Choferes"
+                  texto={"black"}
+                  col={"#ffc400"}
+                />
+              </Grid>
+              <Grid item xs={4} sm={4} md={5.33} lg={5.33}>
+                <CardTaxi
+                  numero={recaudaciones.length}
+                  titulo="Recaudaciones"
+                  texto={"white"}
+                  col={"black"}
+                />
+              </Grid>
+              <Grid item xs={4} sm={4} md={5.33} lg={5.33}>
+                <CardTaxi
+                  numero={choques.length}
+                  titulo="Choques"
+                  texto={"black"}
+                  col={"#fff59d"}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="warning"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleRecaudacion("crear")}
-              >
-                Cargar Recaudaciones
-              </Button>
-            </Grid>
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="error"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleChoferes("mostrar")}
-              >
-                Mostrar Choferes
-              </Button>
-            </Grid>
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="warning"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleChoferes("crear")}
-              >
-                Cargar Choferes
-              </Button>
-            </Grid>
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="error"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleChoque("mostrar")}
-              >
-                Mostrar Choques
-              </Button>
-            </Grid>
-            <Grid item xs={2} sm={4} md={8} lg={8}>
-              <Button
-                variant="contained"
-                color="warning"
-                sx={{
-                  width: "100%",
-                  height: "50px",
-                  bgcolor: "#212121",
-                  color: "white",
-                  fontSize: {
-                    xs: "10px",
-                    sm: "13px",
-                    md: "15px",
-                    lg: "15px",
-                  },
-                }}
-                onClick={() => handleChoque("crear")}
-              >
-                Cargar Choques
-              </Button>
-            </Grid>
-          </Grid>
-        </Box>
-        <Box sx={{ width: "100%" }}>
-          <Box sx={{ textAlign: "center", mt: "2%", mb: "2%" }}>
-            <Typography variant="h4" component={"div"}>
-              Grafico
-            </Typography>
           </Box>
-          <Grid
-            container
-            spacing={{ xs: 3, md: 6 }}
-            columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
-          >
-            <Grid item xs={4} sm={8} md={5.33} lg={4}>
-              <CardTaxi numero={choferes.length} titulo="Choferes" />
-            </Grid>
-            <Grid item xs={4} sm={8} md={5.33} lg={4}>
-              <CardTaxi numero={recaudaciones.length} titulo="Recaudaciones" />
-            </Grid>
-            <Grid item xs={4} sm={8} md={5.33} lg={4}>
-              <CardTaxi numero={choques.length} titulo="Choques" />
-            </Grid>
-            <Grid item xs={4} sm={8} md={5.33} lg={4}>
-              <CardTaxi
-                numero={"$  " + total}
-                titulo="Total de todas las recaudaciones"
-              />
-            </Grid>
-          </Grid>
-        </Box>
+        </Container>
       </Stack>
     </div>
   );

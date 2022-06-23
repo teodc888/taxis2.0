@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
+
+
 body::-webkit-scrollbar {
   width: 15px;
   /* width of the entire scrollbar */
 }
 
 body::-webkit-scrollbar-track {
-  background: #263238;
   filter: transparent;
   /* color of the tracking area */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #607d8b;
+  background-color: #ffd600;
   /* color of the scroll thumb */
   border-radius: 20px;
   /* roundness of the scroll thumb */

@@ -72,7 +72,9 @@ export default function CardTaxi({
   usuario,
   variable,
   titulo,
-  numero
+  numero,
+  texto,
+  col
 }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -385,13 +387,13 @@ export default function CardTaxi({
           </Card>
         </>
       ) : (
-        <Card sx={{ maxWidth: 400, margin: "auto" }}>
+        <Card sx={{ maxWidth: 400, margin: "auto", bgcolor:col, color:texto }}>
           <CardContent>
-            <Typography variant="body2" component="div" color="text.secondary">
+            <Typography variant="body2" component="div" >
               {titulo}
             </Typography>
             <Typography variant="h5">{numero}</Typography>
-            <Typography variant="body2" component="div" color="text.secondary">
+            <Typography variant="body2" component="div" >
               cantidad de {titulo}
             </Typography>
           </CardContent>

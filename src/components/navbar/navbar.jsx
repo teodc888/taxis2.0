@@ -43,29 +43,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import CarCrashIcon from "@mui/icons-material/CarCrash";
 
 //Slider
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
-
-//Stilos para slider
-const useStyles = makeStyles((theme) => ({
-  menuSliderContainer: {
-    width: 312,
-    background: "black",
-    height: "100%",
-  },
-  avatar: {
-    display: "block",
-    margin: "1rem auto",
-    width: theme.spacing(13),
-    height: theme.spacing(13),
-  },
-  listItem: {
-    color: "#ffc400",
-  },
-  listText: {
-    color: "white",
-  },
-}));
 
 const menuItems = [
   { listIcon: <HomeIcon />, listText: "Home", listPath: "/" },
@@ -102,7 +80,6 @@ const menuItems = [
 ];
 
 export default function Navbar({ setMode, setCargando }) {
-  const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -139,11 +116,16 @@ export default function Navbar({ setMode, setCargando }) {
 
   const sideList = () => (
     <Box
-      sx={{ background: handleDarkModeBG(), width: 312, height: "100%" }}
+      sx={{ background: handleDarkModeBG(), width: 300, height: "100%" }}
       component="div"
     >
       <Avatar
-        className={classes.avatar}
+        sx={{
+          display: "block",
+          margin: "1rem auto",
+          width: 100,
+          height: 100,
+        }}
         src={"https://cdn-icons-png.flaticon.com/512/1801/1801444.png"}
         alt="Taxis"
       />
@@ -156,12 +138,12 @@ export default function Navbar({ setMode, setCargando }) {
           <ListItem
             button
             key={i}
-            className={classes.listItem}
+            sx={{ color: "#ffc400" }}
             onClick={() => setOpen(false)}
             component={Link}
             to={item.listPath}
           >
-            <ListItemIcon className={classes.listItem}>
+            <ListItemIcon sx={{ color: "#ffc400" }}>
               {item.listIcon}
             </ListItemIcon>
             <ListItemText
