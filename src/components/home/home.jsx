@@ -65,6 +65,11 @@ export default function Home() {
     }
   }, [dispatch, autenticacion, usuario]);
 
+  const filtradoTotal =
+    recaudaciones.length > 0 ? recaudaciones.map((total) => total.total) : 0;
+  const reducer = (accumulator, curr) => accumulator + curr;
+  const total = filtradoTotal.length > 0 ? filtradoTotal.reduce(reducer) : 0;
+
   return (
     <div>
       <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
@@ -249,7 +254,10 @@ export default function Home() {
               <CardTaxi numero={choques.length} titulo="Choques" />
             </Grid>
             <Grid item xs={4} sm={8} md={5.33} lg={4}>
-              <CardTaxi numero={choferes.length} titulo="choferes" />
+              <CardTaxi
+                numero={"$  " + total}
+                titulo="Total de todas las recaudaciones"
+              />
             </Grid>
           </Grid>
         </Box>
