@@ -101,20 +101,25 @@ export default function Home() {
               spacing={{ xs: 3, md: 6 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "black",
                     color: "white",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleRecaudacion("mostrar")}
@@ -122,20 +127,25 @@ export default function Home() {
                   Mostrar Recaudaciones
                 </Button>
               </Grid>
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "#ffc400",
                     color: "black",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleRecaudacion("crear")}
@@ -143,20 +153,25 @@ export default function Home() {
                   Cargar Recaudaciones
                 </Button>
               </Grid>
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "#ffc400",
                     color: "black",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleChoferes("mostrar")}
@@ -164,20 +179,25 @@ export default function Home() {
                   Mostrar Choferes
                 </Button>
               </Grid>
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "black",
                     color: "white",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleChoferes("crear")}
@@ -185,20 +205,25 @@ export default function Home() {
                   Cargar Choferes
                 </Button>
               </Grid>
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "black",
                     color: "white",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleChoque("mostrar")}
@@ -206,20 +231,25 @@ export default function Home() {
                   Mostrar Choques
                 </Button>
               </Grid>
-              <Grid item xs={4} sm={4} md={8} lg={8}>
+              <Grid item xs={2} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
                   sx={{
                     width: "100%",
-                    height: "50px",
+                    height: {
+                      xs: "100px",
+                      sm: "70px",
+                      md: "70px",
+                      lg: "80px",
+                    },
                     bgcolor: "#ffc400",
                     color: "black",
                     fontSize: {
-                      xs: "10px",
-                      sm: "13px",
-                      md: "15px",
-                      lg: "15px",
+                      xs: "15px",
+                      sm: "17px",
+                      md: "18px",
+                      lg: "20px",
                     },
                   }}
                   onClick={() => handleChoque("crear")}
@@ -261,7 +291,7 @@ export default function Home() {
                   numero={choques.length}
                   titulo="Choques"
                   texto={"black"}
-                  col={"#fff59d"}
+                  col={"#fffde7"}
                 />
               </Grid>
             </Grid>
