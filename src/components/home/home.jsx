@@ -8,7 +8,6 @@ import {
   Button,
   Grid,
   Box,
-  Typography,
   Container,
 } from "@mui/material";
 
@@ -90,12 +89,7 @@ export default function Home() {
           />
         </Card>
         <Container maxWidth="L">
-          <Box sx={{ width: "100%", mt: "1%" }}>
-            <Box sx={{ textAlign: "center", mb: "2%" }}>
-              <Typography variant="h4" component={"div"}>
-                TAXIS
-              </Typography>
-            </Box>
+          <Box sx={{ width: "100%", mt: "2%" }}>
             <Grid
               container
               spacing={{ xs: 3, md: 6 }}
@@ -259,12 +253,17 @@ export default function Home() {
               </Grid>
             </Grid>
           </Box>
-          <Box sx={{ width: "100%" }}>
-            <Box sx={{ textAlign: "center", mt: "2%", mb: "2%" }}>
-              <Typography variant="h4" component={"div"}>
-                Graficos
-              </Typography>
-            </Box>
+          <Box
+            sx={{
+              width: "100%",
+              mt: {
+                xs: "15%",
+                sm: "15%",
+                md: "5%",
+                lg: "5%",
+              },
+            }}
+          >
             <Grid
               container
               spacing={{ xs: 3, md: 6 }}

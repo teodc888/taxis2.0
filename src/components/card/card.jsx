@@ -199,7 +199,7 @@ export default function CardTaxi({
               sx={{ mt: "5%" }}
               onClick={handleEditarChofer}
             >
-              Editar Chofer
+              Editar 
             </Button>
           </CardContent>
         </Card>
@@ -286,7 +286,7 @@ export default function CardTaxi({
               sx={{ mt: "5%" }}
               onClick={handleEditarRecaudacion}
             >
-              Editar Recaudacion
+              Editar 
             </Button>
           </CardContent>
         </Card>
@@ -381,7 +381,7 @@ export default function CardTaxi({
                 sx={{ mt: "5%" }}
                 onClick={handleEditarChoque}
               >
-                Editar Choque
+                Editar 
               </Button>
             </CardContent>
           </Card>

@@ -17,6 +17,7 @@ import {
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import MobileDatePicker from "@mui/lab/MobileDatePicker";
+import ClearIcon from "@mui/icons-material/Clear";
 
 //Router
 import { useParams, useNavigate } from "react-router";
@@ -77,6 +78,14 @@ export default function EditarChofer() {
     setInput({ ...input, carnet: e.target.value });
   };
 
+  //boton eliminar
+  const borrarImagen = (id) => {
+    setInput({
+      ...input,
+      imagenes: input.imagenes.filter((idFilter) => idFilter !== id),
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -103,7 +112,6 @@ export default function EditarChofer() {
     }
   };
 
-
   return (
     <>
       <Box>
@@ -124,6 +132,14 @@ export default function EditarChofer() {
             >
               <Grid item xs={4} sm={8} md={16} lg={16}>
                 <Card sx={{ maxWidth: 300, margin: "auto" }}>
+                  <Button
+                    color="error"
+                    variant="contained"
+                    sx={{ mb: "5%" }}
+                    onClick={() => borrarImagen(input.imagen)}
+                  >
+                    <ClearIcon />
+                  </Button>
                   <CardMedia
                     component="img"
                     height="300"
