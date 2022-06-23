@@ -101,7 +101,7 @@ export default function Home() {
               spacing={{ xs: 3, md: 6 }}
               columns={{ xs: 4, sm: 8, md: 16, lg: 16 }}
             >
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
@@ -122,7 +122,7 @@ export default function Home() {
                   Mostrar Recaudaciones
                 </Button>
               </Grid>
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
@@ -143,7 +143,7 @@ export default function Home() {
                   Cargar Recaudaciones
                 </Button>
               </Grid>
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
@@ -164,7 +164,7 @@ export default function Home() {
                   Mostrar Choferes
                 </Button>
               </Grid>
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
@@ -185,7 +185,7 @@ export default function Home() {
                   Cargar Choferes
                 </Button>
               </Grid>
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="warning"
@@ -206,7 +206,7 @@ export default function Home() {
                   Mostrar Choques
                 </Button>
               </Grid>
-              <Grid item xs={2} sm={8} md={8} lg={8}>
+              <Grid item xs={4} sm={4} md={8} lg={8}>
                 <Button
                   variant="contained"
                   color="inherit"
