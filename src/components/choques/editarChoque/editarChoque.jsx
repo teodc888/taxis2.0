@@ -82,7 +82,10 @@ export default function EditarChoque() {
 
   //boton eliminar
   const borrarImagen = (id) => {
-    input.imagenes.filter((idFilter) => idFilter !== id);
+    setInput({
+      ...input,
+      imagenes: input.imagenes.filter((idFilter) => idFilter !== id),
+    });
   };
 
   const handleSubmit = async (e) => {
